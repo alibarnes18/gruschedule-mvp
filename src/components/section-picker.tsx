@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import type { Department, Faculty, Section } from "@/lib/data";
 import { loadSavedSection, saveSavedSection } from "@/lib/saved-section";
 import { sectionLabel } from "@/lib/schedule";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export type SectionPickerValue = {
   facultyId: string;
@@ -18,9 +25,6 @@ type Props = {
   onChange: (value: SectionPickerValue) => void;
   persist?: boolean;
 };
-
-const selectClass =
-  "w-full rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 focus:border-zinc-500 focus:outline-none disabled:opacity-40";
 
 export function SectionPicker({
   faculties,
@@ -91,56 +95,62 @@ export function SectionPicker({
 
   return (
     <div className="grid gap-3 sm:grid-cols-3">
-      <label className="flex flex-col gap-1 text-xs text-zinc-400">
-        Fakülte
-        <select
-          className={selectClass}
-          value={facultyId}
-          onChange={(e) => handleFacultyChange(e.target.value)}
-        >
-          <option value="">Seçiniz</option>
-          {faculties.map((f) => (
-            <option key={f.id} value={f.id}>
-              {f.name}
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs text-muted-foreground">Fakülte</span>
+        <Select value={facultyId || null} onValueChange={(v) => handleFacultyChange(v ?? "")}>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Seçiniz" />
+          </SelectTrigger>
+          <SelectContent>
+            {faculties.map((f) => (
+              <SelectItem key={f.id} value={f.id}>
+                {f.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-      <label className="flex flex-col gap-1 text-xs text-zinc-400">
-        Bölüm
-        <select
-          className={selectClass}
-          value={departmentId}
+      <div className="flex flex-col gap-1.5">
+        <span className="text-xs text-muted-foreground">Bölüm</span>
+        <Select
+          value={departmentId || null}
+          onValueChange={(v) => handleDepartmentChange(v ?? "")}
           disabled={!facultyId}
-          onChange={(e) => handleDepartmentChange(e.target.value)}
         >
-          <option value="">Seçiniz</option>
-          {departmentsInFaculty.map((d) => (
-            <option key={d.id} value={d.id}>
-              {d.name}
-            </option>
-          ))}
-        </select>
-      </label>
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="Seçiniz" />
+          </SelectTrigger>
+          <SelectContent>
+            {departmentsInFaculty.map((d) => (
+              <SelectItem key={d.id} value={d.id}>
+                {d.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
       {sections && (
-        <label className="flex flex-col gap-1 text-xs text-zinc-400">
-          Sınıf / Şube
-          <select
-            className={selectClass}
-            value={sectionId}
+        <div className="flex flex-col gap-1.5">
+          <span className="text-xs text-muted-foreground">Sınıf / Şube</span>
+          <Select
+            value={sectionId || null}
+            onValueChange={(v) => handleSectionChange(v ?? "")}
             disabled={!departmentId}
-            onChange={(e) => handleSectionChange(e.target.value)}
           >
-            <option value="">Seçiniz</option>
-            {sectionsInDepartment.map((s) => (
-              <option key={s.id} value={s.id}>
-                {sectionLabel(s.grade_level, s.section_label)}
-              </option>
-            ))}
-          </select>
-        </label>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Seçiniz" />
+            </SelectTrigger>
+            <SelectContent>
+              {sectionsInDepartment.map((s) => (
+                <SelectItem key={s.id} value={s.id}>
+                  {sectionLabel(s.grade_level, s.section_label)}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
       )}
     </div>
   );

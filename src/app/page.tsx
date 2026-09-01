@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { DashboardNow } from "@/components/dashboard-now";
 import { EmptyState } from "@/components/empty-state";
+import { Card, CardContent, CardHeader, CardTitle, CardAction } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   getAcademicCalendarEvents,
   getClassScheduleEntries,
@@ -42,8 +44,8 @@ export default async function DashboardPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-semibold text-zinc-50">Anasayfa</h1>
-        <p className="mt-1 text-sm text-zinc-400">
+        <h1 className="text-2xl font-semibold text-foreground">Anasayfa</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Giresun Üniversitesi ders programı, sınav takvimi, akademik takvim
           ve yemekhane menüsü tek yerde.
         </p>
@@ -57,21 +59,21 @@ export default async function DashboardPage() {
       />
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">
-              Bugünün Menüsü
-            </h2>
-            <Link
-              href="/menu"
-              className="text-xs text-zinc-400 hover:text-zinc-200"
-            >
-              Tüm menü →
-            </Link>
-          </div>
-          <div className="mt-3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Bugünün Menüsü</CardTitle>
+            <CardAction>
+              <Link
+                href="/menu"
+                className="text-xs text-muted-foreground hover:text-foreground"
+              >
+                Tüm menü →
+              </Link>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
             {todayMenu ? (
-              <ul className="list-inside list-disc space-y-1 text-sm text-zinc-300">
+              <ul className="list-inside list-disc space-y-1 text-sm text-foreground/90">
                 {todayMenu.items.map((item, i) => (
                   <li key={i}>{item}</li>
                 ))}
@@ -79,31 +81,33 @@ export default async function DashboardPage() {
             ) : (
               <EmptyState>Bugün için menü bilgisi bulunamadı.</EmptyState>
             )}
-          </div>
-        </section>
+          </CardContent>
+        </Card>
 
-        <section className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-zinc-200">
-              Yaklaşan Sınavlar
-            </h2>
-            <Link
-              href="/sinav-takvimi"
-              className="text-xs text-zinc-400 hover:text-zinc-200"
-            >
-              Tümü →
-            </Link>
-          </div>
-          <div className="mt-3">
+        <Card>
+          <CardHeader>
+            <CardTitle>Yaklaşan Sınavlar</CardTitle>
+            <CardAction>
+              <Link
+                href="/sinav-takvimi"
+                className="text-xs text-muted-foreground hover:text-foreground"
+              >
+                Tümü →
+              </Link>
+            </CardAction>
+          </CardHeader>
+          <CardContent>
             {nextExams.length === 0 ? (
               <EmptyState>Yaklaşan sınav bulunamadı.</EmptyState>
             ) : (
               <ul className="space-y-3 text-sm">
                 {nextExams.map((exam) => (
-                  <li key={exam.id} className="flex flex-col">
-                    <span className="text-zinc-100">{exam.course_name}</span>
-                    <span className="text-xs text-zinc-500">
-                      {EXAM_TYPE_LABELS[exam.exam_type] ?? exam.exam_type} ·{" "}
+                  <li key={exam.id} className="flex flex-col gap-1">
+                    <span className="text-foreground">{exam.course_name}</span>
+                    <span className="flex items-center gap-2 text-xs text-muted-foreground">
+                      <Badge variant="outline">
+                        {EXAM_TYPE_LABELS[exam.exam_type] ?? exam.exam_type}
+                      </Badge>
                       {departmentById.get(exam.department_id)?.name ?? ""} ·{" "}
                       {formatDate(exam.exam_date)}
                     </span>
@@ -111,31 +115,31 @@ export default async function DashboardPage() {
                 ))}
               </ul>
             )}
-          </div>
-        </section>
+          </CardContent>
+        </Card>
       </div>
 
-      <section className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-        <div className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-zinc-200">
-            Akademik Takvimden Yaklaşanlar
-          </h2>
-          <Link
-            href="/akademik-takvim"
-            className="text-xs text-zinc-400 hover:text-zinc-200"
-          >
-            Tüm takvim →
-          </Link>
-        </div>
-        <div className="mt-3">
+      <Card>
+        <CardHeader>
+          <CardTitle>Akademik Takvimden Yaklaşanlar</CardTitle>
+          <CardAction>
+            <Link
+              href="/akademik-takvim"
+              className="text-xs text-muted-foreground hover:text-foreground"
+            >
+              Tüm takvim →
+            </Link>
+          </CardAction>
+        </CardHeader>
+        <CardContent>
           {upcomingCalendarEvents.length === 0 ? (
             <EmptyState>Yaklaşan bir akademik takvim etkinliği yok.</EmptyState>
           ) : (
             <ul className="space-y-3 text-sm">
               {upcomingCalendarEvents.map((event) => (
                 <li key={event.id} className="flex flex-col">
-                  <span className="text-zinc-100">{event.title}</span>
-                  <span className="text-xs text-zinc-500">
+                  <span className="text-foreground">{event.title}</span>
+                  <span className="text-xs text-muted-foreground">
                     {formatDate(event.start_date)}
                     {event.end_date && event.end_date !== event.start_date
                       ? ` – ${formatDate(event.end_date)}`
@@ -145,8 +149,8 @@ export default async function DashboardPage() {
               ))}
             </ul>
           )}
-        </div>
-      </section>
+        </CardContent>
+      </Card>
     </div>
   );
 }

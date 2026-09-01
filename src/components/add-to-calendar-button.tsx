@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { downloadIcs, type IcsEvent } from "@/lib/ics";
 
 type Props = {
@@ -10,12 +11,13 @@ type Props = {
 
 export function AddToCalendarButton({ filename, event, label = "Takvime Ekle" }: Props) {
   return (
-    <button
+    <Button
       type="button"
+      variant="outline"
+      size="sm"
       onClick={() => downloadIcs(filename, [event])}
-      className="rounded-full border border-zinc-700 px-3 py-1 text-xs font-medium text-zinc-300 transition-colors hover:border-zinc-500 hover:text-zinc-100"
     >
       {label}
-    </button>
+    </Button>
   );
 }

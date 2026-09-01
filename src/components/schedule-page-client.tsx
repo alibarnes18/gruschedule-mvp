@@ -4,6 +4,15 @@ import { useMemo, useState } from "react";
 import type { ClassScheduleEntry, Department, Faculty, Section } from "@/lib/data";
 import { SectionPicker, type SectionPickerValue } from "@/components/section-picker";
 import { EmptyState } from "@/components/empty-state";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { DAY_NAMES, WEEKDAY_ORDER, formatTime } from "@/lib/schedule";
 
 type Props = {
@@ -39,14 +48,16 @@ export function SchedulePageClient({ faculties, departments, sections, entries }
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-        <SectionPicker
-          faculties={faculties}
-          departments={departments}
-          sections={sections}
-          onChange={setSelection}
-        />
-      </section>
+      <Card>
+        <CardContent>
+          <SectionPicker
+            faculties={faculties}
+            departments={departments}
+            sections={sections}
+            onChange={setSelection}
+          />
+        </CardContent>
+      </Card>
 
       {!selection?.sectionId ? (
         <EmptyState>
@@ -55,53 +66,46 @@ export function SchedulePageClient({ faculties, departments, sections, entries }
       ) : timeSlots.length === 0 ? (
         <EmptyState>Seçilen şube için ders programı bulunamadı.</EmptyState>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-zinc-800">
-          <table className="w-full min-w-[720px] border-collapse text-sm">
-            <thead>
-              <tr className="bg-zinc-900">
-                <th className="w-28 border-b border-zinc-800 px-3 py-2 text-left text-xs font-medium text-zinc-400">
-                  Saat
-                </th>
+        <Card className="py-0">
+          <Table className="min-w-[720px]">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-28">Saat</TableHead>
                 {WEEKDAY_ORDER.map((day) => (
-                  <th
-                    key={day}
-                    className="border-b border-zinc-800 px-3 py-2 text-left text-xs font-medium text-zinc-400"
-                  >
-                    {DAY_NAMES[day]}
-                  </th>
+                  <TableHead key={day}>{DAY_NAMES[day]}</TableHead>
                 ))}
-              </tr>
-            </thead>
-            <tbody>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               {timeSlots.map(([startTime, endTime]) => (
-                <tr key={startTime} className="border-b border-zinc-900">
-                  <td className="px-3 py-2 align-top text-xs text-zinc-500">
+                <TableRow key={startTime}>
+                  <TableCell className="text-xs text-muted-foreground">
                     {formatTime(startTime)}–{formatTime(endTime)}
-                  </td>
+                  </TableCell>
                   {WEEKDAY_ORDER.map((day) => {
                     const entry = entryAt(day, startTime);
                     return (
-                      <td key={day} className="px-3 py-2 align-top">
+                      <TableCell key={day} className="whitespace-normal align-top">
                         {entry ? (
-                          <div className="rounded-md bg-zinc-800/70 px-2 py-1.5">
-                            <p className="text-sm font-medium text-zinc-100">
+                          <div className="rounded-md bg-muted px-2 py-1.5">
+                            <p className="text-sm font-medium text-foreground">
                               {entry.course_name}
                             </p>
-                            <p className="text-xs text-zinc-400">
+                            <p className="text-xs text-muted-foreground">
                               {[entry.instructor, entry.location]
                                 .filter(Boolean)
                                 .join(" · ")}
                             </p>
                           </div>
                         ) : null}
-                      </td>
+                      </TableCell>
                     );
                   })}
-                </tr>
+                </TableRow>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </TableBody>
+          </Table>
+        </Card>
       )}
     </div>
   );

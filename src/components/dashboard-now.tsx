@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { ClassScheduleEntry, Department, Faculty, Section } from "@/lib/data";
 import { SectionPicker, type SectionPickerValue } from "@/components/section-picker";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   DAY_NAMES,
   WEEKDAY_ORDER,
@@ -71,28 +72,28 @@ export function DashboardNow({ faculties, departments, sections, entries }: Prop
   }, [now, selection, sectionEntries]);
 
   return (
-    <section className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
-      <h2 className="text-sm font-semibold text-zinc-200">Şu An</h2>
-      <p className="mt-1 text-xs text-zinc-500">
-        Programını görmek için fakülte, bölüm ve şubeni seç — seçimin bu
-        tarayıcıda hatırlanır.
-      </p>
-      <div className="mt-4">
+    <Card>
+      <CardHeader>
+        <CardTitle>Şu An</CardTitle>
+        <CardDescription>
+          Programını görmek için fakülte, bölüm ve şubeni seç — seçimin bu
+          tarayıcıda hatırlanır.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="flex flex-col gap-4">
         <SectionPicker
           faculties={faculties}
           departments={departments}
           sections={sections}
           onChange={setSelection}
         />
-      </div>
 
-      <div className="mt-4">
         {!selection?.sectionId ? (
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             Şu an hangi derste olduğunu görmek için yukarıdan şubeni seç.
           </p>
         ) : status?.kind === "current" ? (
-          <p className="text-sm text-zinc-100">
+          <p className="text-sm text-foreground">
             Şu an{" "}
             <span className="font-semibold">{status.entry.course_name}</span>{" "}
             dersindesin
@@ -105,7 +106,7 @@ export function DashboardNow({ faculties, departments, sections, entries }: Prop
             ({formatTime(status.entry.start_time)}–{formatTime(status.entry.end_time)}).
           </p>
         ) : status?.kind === "next" ? (
-          <p className="text-sm text-zinc-100">
+          <p className="text-sm text-foreground">
             Şu an dersin yok. Sıradaki ders:{" "}
             <span className="font-semibold">{status.entry.course_name}</span>{" "}
             — {DAY_NAMES[status.entry.day_of_week]}{" "}
@@ -113,11 +114,11 @@ export function DashboardNow({ faculties, departments, sections, entries }: Prop
             {status.entry.location ? ` · ${status.entry.location}` : ""}
           </p>
         ) : (
-          <p className="text-sm text-zinc-500">
+          <p className="text-sm text-muted-foreground">
             Seçilen şube için ders programı bulunamadı.
           </p>
         )}
-      </div>
-    </section>
+      </CardContent>
+    </Card>
   );
 }

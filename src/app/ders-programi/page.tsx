@@ -21,8 +21,8 @@ export default async function ClassSchedulePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-semibold text-zinc-50">Ders Programı</h1>
-        <p className="mt-1 text-sm text-zinc-400">
+        <h1 className="text-2xl font-semibold text-foreground">Ders Programı</h1>
+        <p className="mt-1 text-sm text-muted-foreground">
           Fakülte, bölüm ve şubeni seçerek haftalık ders programını görüntüle.
         </p>
       </div>
