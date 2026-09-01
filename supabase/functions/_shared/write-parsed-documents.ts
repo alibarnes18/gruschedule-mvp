@@ -11,7 +11,8 @@ import { parseMenu } from "./parse-menu.ts";
 import { academicCalendarSources, classScheduleSources, examSources, menuSources } from "./adapters/giresun.ts";
 import { sha256Hex } from "./hash.ts";
 import { notifyDepartmentSubscribers } from "./notify-changes.ts";
-import { EXAM_TYPE_LABELS } from "./tr-format.ts";
+import { DOCUMENT_TYPE_LABELS, EXAM_TYPE_LABELS } from "./tr-format.ts";
+import { sendMessage } from "./telegram.ts";
 
 export type WriteResult =
   | { ok: true; sourceDocumentId: string; parseStatus: string; entriesWritten: number; flaggedCount: number }
@@ -69,6 +70,33 @@ async function insertSourceDocument(
 function parseStatusFor(entryCount: number, flaggedCount: number): string {
   if (entryCount === 0) return "failed";
   return flaggedCount > 0 ? "needs_review" : "success";
+}
+
+/** Pings the admin's Telegram chat when a parse comes back flagged or
+ * empty — otherwise a broken parser (e.g. the university changing a PDF's
+ * layout) fails silently until someone happens to check parse_status. */
+async function notifyAdminIfNeedsAttention(
+  documentType: string,
+  parseStatus: string,
+  sourceUrl: string,
+  flaggedCount: number,
+): Promise<void> {
+  if (parseStatus === "success") return;
+  const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  const adminChatId = Deno.env.get("TELEGRAM_ADMIN_CHAT_ID");
+  if (!token || !adminChatId) return;
+
+  const label = DOCUMENT_TYPE_LABELS[documentType] ?? documentType;
+  const icon = parseStatus === "failed" ? "❌" : "⚠️";
+  const detail = parseStatus === "failed"
+    ? "hiç kayıt çıkarılamadı"
+    : `${flaggedCount} kayıt işaretlendi (needs_review)`;
+
+  await sendMessage(
+    token,
+    Number(adminChatId),
+    `${icon} <b>${label}</b> parse ${parseStatus}: ${detail}.\n${sourceUrl}`,
+  );
 }
 
 export async function writeClassSchedule(
@@ -172,6 +200,7 @@ export async function writeClassSchedule(
   const { error: insertError } = await supabase.from("class_schedule_entries").insert(rows);
   if (insertError) return err(insertError.message);
 
+  await notifyAdminIfNeedsAttention(source.documentType, parseStatus, sourceUrl ?? source.sourceUrl, flaggedCount);
   return { ok: true, sourceDocumentId: sourceDocument.id, parseStatus, entriesWritten: rows.length, flaggedCount };
 }
 
@@ -231,6 +260,7 @@ export async function writeExamSchedule(
     await notifyExamScheduleChange(supabase, department.id, source.examType);
   }
 
+  await notifyAdminIfNeedsAttention(source.documentType, parseStatus, sourceUrl ?? source.sourceUrl, flaggedCount);
   return { ok: true, sourceDocumentId: sourceDocument.id, parseStatus, entriesWritten: rows.length, flaggedCount };
 }
 
@@ -288,6 +318,7 @@ export async function writeAcademicCalendar(
   const { error: insertError } = await supabase.from("academic_calendar_events").insert(rows);
   if (insertError) return err(insertError.message);
 
+  await notifyAdminIfNeedsAttention(source.documentType, parseStatus, sourceUrl ?? source.sourceUrl, flaggedCount);
   return { ok: true, sourceDocumentId: sourceDocument.id, parseStatus, entriesWritten: rows.length, flaggedCount };
 }
 
@@ -324,5 +355,6 @@ export async function writeMenu(
   const { error: upsertError } = await supabase.from("menu_days").upsert(rows, { onConflict: "date" });
   if (upsertError) return err(upsertError.message);
 
+  await notifyAdminIfNeedsAttention(source.documentType, parseStatus, sourceUrl ?? source.sourceUrl, flaggedCount);
   return { ok: true, sourceDocumentId: sourceDocument.id, parseStatus, entriesWritten: rows.length, flaggedCount };
 }

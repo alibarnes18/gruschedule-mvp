@@ -87,6 +87,42 @@ supabase functions deploy notify-changes
 Bot komutları: `/start`, `/bolum_sec`, `/sinavlarim`, `/menu`, `/takvim`,
 `/simdi`, `/programim` — bkz. `gruschedule.md` bölüm 6.
 
+**Parser uyarıları:** Bir parse `failed` (hiç kayıt çıkmadı) veya
+`needs_review` (bazı kayıtlar şüpheli işaretlendi — bkz. üniversite PDF
+formatını değiştirdiğinde) durumuna düşerse, `TELEGRAM_ADMIN_CHAT_ID` secret
+olarak ayarlanmışsa o chat'e otomatik bir uyarı gönderilir:
+
+```bash
+supabase secrets set TELEGRAM_ADMIN_CHAT_ID=<kendi-chat-id'niz>
+```
+
+Chat ID'nizi öğrenmek için bota bir mesaj gönderip
+`notification_subscriptions` tablosundaki `telegram_chat_id` kolonuna
+bakabilir, ya da `https://api.telegram.org/bot<token>/getUpdates` çağırıp
+`message.chat.id` alanını okuyabilirsiniz.
+
+### Otomatik PDF kontrolü (check-for-updates)
+
+`check-for-updates` fonksiyonu deploy edildikten sonra kendi kendine hiçbir
+şey yapmaz — `pg_cron`'un onu tetikleyebilmesi için proje URL'i ve
+service role key'in Supabase Vault'a **bir kere, elle** eklenmesi gerekir
+(gerçek key'ler asla migration dosyalarına/git'e yazılmaz):
+
+```bash
+supabase functions deploy check-for-updates
+```
+
+Sonra Supabase Dashboard'daki SQL Editor'de (Project Settings > API'dan
+alınan değerlerle):
+
+```sql
+select vault.create_secret('https://<project-ref>.supabase.co', 'project_url');
+select vault.create_secret('<service_role_key>', 'service_role_key');
+```
+
+Bu ikisi eklendikten sonra `supabase/migrations/*_check_for_updates_cron.sql`
+migration'ındaki `pg_cron` job'u fonksiyonu 6 saatte bir otomatik tetikler.
+
 ## Proje yapısı
 
 ```

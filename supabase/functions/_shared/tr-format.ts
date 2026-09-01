@@ -18,6 +18,13 @@ export const EXAM_TYPE_LABELS: Record<string, string> = {
   makeup: "Bütünleme",
 };
 
+export const DOCUMENT_TYPE_LABELS: Record<string, string> = {
+  class_schedule: "Ders Programı",
+  exam_schedule: "Sınav Takvimi",
+  academic_calendar: "Akademik Takvim",
+  menu: "Yemek Menüsü",
+};
+
 export function formatTime(time: string): string {
   return time.slice(0, 5);
 }
