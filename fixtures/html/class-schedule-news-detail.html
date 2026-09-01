@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="tr"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="tr"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="tr"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="tr">
+<!--<![endif]-->
+<head>
+    <title>2026-2027 Eğitim-Öğretim Yılı Güz Yarıyılı Ders Programı | Bilgisayar Mühendisliği Bölümü</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Giresun Üniversitesi - Bilgi İşlem Daire Başkanlığı" />
+    <link rel="stylesheet" href='/_Resources/css/google.css?v=2' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="/_Resources/bootstrap/css/bootstrap.css?v=2" />
+    <link href="/_Resources/js/fancybox/jquery.fancybox.css?v=2" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/font-awesome.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/animate.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/style.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/superfish.css?v=2" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/yamm.css?v=2" />
+    <link href="/_Resources/js/fullcalendar/fullcalendar.min.css?v=2" rel="stylesheet" />
+    <link href="/Content/themes/base/css?v=myqT7npwmF2ABsuSaHqt8SCvK8UFWpRv7T4M8r3kiK01" rel="stylesheet"/>
+
+    <style type="text/css">
+        #ui-datepicker-div {
+            font-size: 12px;
+        }
+
+        #calendar .fc-day-top {
+            padding-top: 22px;
+            text-align: center;
+        }
+
+        #calendar .fc-more {
+            color: #707070;
+        }
+
+        #calendar .fc-day-number {
+            float: none;
+            color: #707070;
+            /*        position: absolute;*/
+            /*        text-align: center;*/
+        }
+
+        #calendar .fc-center h2 {
+            font-size: 18px;
+        }
+
+        #calendar .fc-head {
+            color: #f18419;
+        }
+
+            #calendar .fc-head td, #calendar .fc-head tr {
+                border: none;
+            }
+
+        #calendar .fc-icon-left-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-icon-right-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-title {
+            color: #FFF;
+        }
+
+        #calendar .fc-day-header {
+            border: none;
+        }
+
+        #calendar .fc-today {
+            background-color: #f18419;
+            border-right: 1px solid #c5c5c5;
+            cursor: pointer;
+        }
+
+            #calendar .fc-today.event-gri {
+                background-color: #fbae65;
+            }
+
+
+            #calendar .fc-today .fc-day-number {
+                color: #FFF;
+            }
+
+        #calendar button {
+            border: none;
+            background: transparent;
+        }
+
+        #calendar .fc-event {
+            background-color: #f18419;
+            border: none;
+            font-size: .75em;
+            /* width: 16px;*/
+            display: none;
+        }
+
+        .takvim-div {
+            width: 400px;
+            /*    height: 400px;*/
+            float: left;
+            padding-bottom: 20px;
+        }
+
+        .takvim-div-genis {
+            float: left;
+            /*    width: 600px;*/
+            /*    height: 700px;*/
+            padding-bottom: 30px;
+        }
+
+            .takvim-div-genis #calendar .fc-day-top {
+                padding-top: 40px !important;
+            }
+
+        .event-gri {
+            /*background-color: #c5c5c5;*/
+            background-color: #fbae65;
+            cursor: pointer;
+        }
+
+        .event-gri .fc-day-number {
+            color: #f18419;
+        }
+    </style>
+
+
+    
+
+
+
+    
+    <script src="/bundles/jquery?v=JzhfglzUfmVF2qo-weTo-kvXJ9AJvIRBLmu11PgpbVY1"></script>
+
+    
+
+
+
+    <script src="/_Resources/js/fancybox/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="/_Resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/_Resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="/_Resources/js/superfish.js"></script>
+    <script src="/_Resources/js/jquery.nicescroll.min.js?v=2"></script>
+    <script src="/_Resources/js/fullcalendar/moment.min.js"></script>
+    <script src='/_Resources/js/fullcalendar/fullcalendar.min.js'></script>
+    <script src='/_Resources/js/fullcalendar/locale-all.js'></script>
+
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt=""/>
+        </a>
+    </div>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-172489513-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-172489513-2');
+</script>
+<meta name="google-site-verification" content="zXppmPPehtnElrm_IKOuVI5y5xaFx2XvOw9HFNSowTQ" />
+
+
+</head>
+<body>
+    <script>
+        $(document).ready(function () {
+
+            $("#homelinks").niceScroll();
+
+            $("#haber").niceScroll();
+
+            $("#duyuru").niceScroll();
+
+            $('#menu a').each(function () { // menüye ikon ekleme kısmı
+                if ($(this).parent().children().length > 1) {
+                    $(this).html($(this).html() + '<i class="fa fa-angle-down"></i>');
+                }
+            });
+
+            $(".fancyImageGallery").fancybox();
+            $(".fancyimg").fancybox();
+
+            $(".dikeyMenu > li > .has-sub").click(function (e) {
+                e.preventDefault();
+
+                var index = $(this).index(".dikeyMenu > li > .has-sub");
+
+                $(".sub-menu").not(':eq(' + index + ')').slideUp();
+
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+            $(".dikeyMenu .sub-menu .has-sub").click(function (e) {
+                e.preventDefault();
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+
+            var a = $('.responsive_menu .main_menu > ul > li > a');
+            a.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).next().slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).prev().removeClass('open');
+                } else {
+                    a.next().slideUp();
+                    a.parent().removeClass('open');
+                    a.prev().removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).prev().addClass('open');
+                    $(this).next().slideDown();
+                }
+            });
+
+            var abtn = $('.responsive_menu .main_menu > ul > li > ul > li > a');
+            abtn.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).parent().find('ul').slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).removeClass('open');
+                } else {
+                    abtn.next().slideUp();
+                    abtn.parent().removeClass('open');
+                    abtn.removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).addClass('open');
+                    $(this).parent().find('ul').slideDown();
+                }
+            });
+
+        });
+
+        function OpenPopUp(url, width, height) {
+
+            $.fancybox({
+                'width': width,
+                'height': height,
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe',
+                'href': url,
+                success: function (dd) {
+                    parent.$.fancybox.close();
+
+                }
+            });
+
+        }
+
+    </script>
+
+    <div class="responsive-navigation visible-md visible-sm visible-xs">
+        <a href="#" class="menu-toggle-btn"><i class="fa fa-bars"></i></a>
+        <div class="responsive_menu">
+
+<ul class="main_menu">
+    <ul id="menu">
+        <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="/tr/page/genel-bilgiler/5929">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/5929">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/ozgoru-ve-ozgorev/5930">Misyon ve Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/17822">Temel Değerler </a></li><li><a class="" target="_self" href="/tr/page/logo-ve-birim-kimligi/17823">Logo ve Birim Kimliği </a></li></ul></li><li><a class="" target="_self" href="/tr/page/yonetim-ve-idari-gorevler/5931">Yönetim </a></li><li><a class="" target="_self" href="/tr/page/bolum-kurulu/17824">Bölüm Kurulu </a></li><li><a class="" target="_self" href="/tr/page/organizasyon-semasi/17817">Organizasyon Şeması </a></li><li><a class="" target="_self" href="/tr/page/komisyonlar-ve-koordinatorlukler/17818">Komisyonlar ve Koordinatörlükler </a></li><li><a class="" target="_self" href="/tr/page/laboratuvarlar/5941">Altyapı ve Fiziki İmkanlar </a></li><li><a class="" target="_self" href="/tr/page/fotograf-galerisi/5932">Fotoğraflarla Bölüm </a></li><li><a class="" target="_self" href="/tr/page/sayilarla-bolum/18803">Sayılarla Bölüm </a></li></ul></li><li><a class="" target="_self" href="/tr/page/ogretim-uyeleri/5934">Akademik Personel </a></li><li><a class="has-sub" target="_self" href="#">Eğitim </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Lisans </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/program-hakkinda/5936">Program Hakkında </a></li><li><a class="" target="_self" href="/tr/page/ders-icerikleri/5938">Ders İçerikleri </a></li><li><a class="" target="_self" href="/tr/page/ders-listesi/5937">Öğretim Planı </a></li><li><a class="" target="_blank" href="https://oidb.giresun.edu.tr/Files/ckFiles/oidb-giresun-edu-tr/akademik%20takvimler/2025-2026%20AKADEM%C4%B0K%20TAKV%C4%B0MLER/2025-2026%20On%20Lisans%20ve%20Lisans%20Akademik%20Takvim%20ders%20izleme%20formu%20ekli.pdf">Akademik Takvim </a></li><li><a class="" target="_blank" href="/tr/news-detail/2026-2027-egitim-ogretim-yili-guz-yariyili-ders-programi/21848">Ders Programı </a></li><li><a class="" target="_self" href="#">Danışman Listesi </a></li><li><a class="" target="_self" href="#">Sınav Programı </a></li><li><a class="" target="_self" href="/tr/page/egitim-amaclari/5939">Eğitim Amaçları </a></li><li><a class="" target="_self" href="/tr/page/program-ciktilari/5940">Program Çıktıları </a></li><li><a class="" target="_blank" href="https://oidb.giresun.edu.tr/Files/ckFiles/79-123-150-29/%C3%96%C4%9Frenci%20%C4%B0%C5%9Fleri%20Daire%20Ba%C5%9Fkanl%C4%B1%C4%9F%C4%B1/y%C3%B6nergeler/MUEHENDISLIK_FAKUELTESI_STAJ_YOENERGESI.pdf">Staj Yönergesi </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="#">Araştırma </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/yayinlar/5942">Bilimsel Yayınlar </a></li><li><a class="" target="_self" href="#">Bilimsel Etkinlikler </a></li><li><a class="" target="_self" href="#">Proje ve Girişimcilik Faaliyetleri </a></li><li><a class="" target="_self" href="#">İşbirlikler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Faaliyetler </a><ul class="sub-menu"><li><a class="" target="_self" href="#">Toplumsal Odaklı Projeler </a></li><li><a class="" target="_self" href="#">Eğitim ve Bilinçlendirme </a></li><li><a class="" target="_self" href="#">Gönüllük Faaliyetleri </a></li><li><a class="" target="_self" href="#">Toplumla Bütünleşik Etkinlikler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="#">Akreditasyon </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-formlari/5943">Öğrenci Formları </a></li><li><a class="" target="_blank" href="https://muhendislik.giresun.edu.tr/tr/page/personel-formlari/4018">Personel Formları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Aday Öğrenciler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/baslarken/5944">Başlarken </a></li><li><a class="" target="_self" href="/tr/page/bolum-tanitimi/5945">Bölüm Tanıtımı </a></li><li><a class="" target="_self" href="/tr/page/sikca-sorulan-sorular/5946">Sıkça Sorulan Sorular </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/iletisim/5947">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/contact">Birim İletişim </a></li><li><a class="" target="_self" href="/tr/contact">Bize Ulaşın </a></li></ul></li>
+    </ul>
+</ul>
+
+
+        </div>
+    </div>
+
+
+    <header class="site-header" style="background-color: #2a4173;">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-10 header-logo">
+                    <div class="logo">
+                        
+
+                            <img style="height: 120px; padding: 10px 0px; float:left;" class="img-responsive" src="/Files/Images/logo_230x230.png" />
+
+
+
+
+                            <span style="float:left;margin-top:5.2%;font-size:26px;margin-left:10px;" class="spanFont">
+                                <a href="https://bilgisayar.giresun.edu.tr" style="display:block;font-weight: bold;">
+                                    <span>M&#252;hendislik Fak&#252;ltesi</span>
+                                </a>
+
+                                <a href="/tr">
+                                    <span style="font-size:20px;font-weight:500;" class="spanFont2">Bilgisayar M&#252;hendisliği B&#246;l&#252;m&#252; </span>
+                                </a>
+                            </span>
+
+
+                        
+
+
+                    </div>
+                </div>
+
+                <div class="col-md-2 header-right pull-right">
+                        <ul class="small-links" style="display:block;">
+                                <li><a href="javascript:changeLang('tr');"><b>TR</b></a></li>
+                                <li><a href="javascript:changeLang('en');"><b>EN</b></a></li>
+
+                        </ul>
+
+                        <ul class="small-links" style="display:block;">
+                            <li><a href="http://www.giresun.edu.tr">&#220;niversite Anasayfa</a></li>
+                        </ul>
+
+
+                    
+
+                    <div class="Search" style="margin-top:47px;margin-right:2px;">
+                        <form action="/tr/search" method="get" class="search-form">
+                            <div class="form-group has-feedback" style="margin-bottom:1px;">
+                                <label for="s" class="sr-only">Ara</label>
+                                <input type="text" class="form-control" name="s" id="s" placeholder="Ara" autocomplete="off">
+                                <span class="fa fa-search form-control-feedback"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="nav-bar-main" role="navigation">
+            <div class="container">
+                <div class="navbar yamm main-navigation clearfix visible-lg">
+                    <div class="navbar-header center" style="">
+                        <a style="display: block; padding: 9px 20px;" href="/tr"><i class="fa fa-home"></i></a>
+                    </div>
+
+                    <div id="navbar-collapse-grid" class="navbar-collapse collapse">
+
+<ul id="menu" class="nav navbar-nav sf-menu">
+    <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="/tr/page/genel-bilgiler/5929">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/5929">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/ozgoru-ve-ozgorev/5930">Misyon ve Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/17822">Temel Değerler </a></li><li><a class="" target="_self" href="/tr/page/logo-ve-birim-kimligi/17823">Logo ve Birim Kimliği </a></li></ul></li><li><a class="" target="_self" href="/tr/page/yonetim-ve-idari-gorevler/5931">Yönetim </a></li><li><a class="" target="_self" href="/tr/page/bolum-kurulu/17824">Bölüm Kurulu </a></li><li><a class="" target="_self" href="/tr/page/organizasyon-semasi/17817">Organizasyon Şeması </a></li><li><a class="" target="_self" href="/tr/page/komisyonlar-ve-koordinatorlukler/17818">Komisyonlar ve Koordinatörlükler </a></li><li><a class="" target="_self" href="/tr/page/laboratuvarlar/5941">Altyapı ve Fiziki İmkanlar </a></li><li><a class="" target="_self" href="/tr/page/fotograf-galerisi/5932">Fotoğraflarla Bölüm </a></li><li><a class="" target="_self" href="/tr/page/sayilarla-bolum/18803">Sayılarla Bölüm </a></li></ul></li><li><a class="" target="_self" href="/tr/page/ogretim-uyeleri/5934">Akademik Personel </a></li><li><a class="has-sub" target="_self" href="#">Eğitim </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Lisans </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/program-hakkinda/5936">Program Hakkında </a></li><li><a class="" target="_self" href="/tr/page/ders-icerikleri/5938">Ders İçerikleri </a></li><li><a class="" target="_self" href="/tr/page/ders-listesi/5937">Öğretim Planı </a></li><li><a class="" target="_blank" href="https://oidb.giresun.edu.tr/Files/ckFiles/oidb-giresun-edu-tr/akademik%20takvimler/2025-2026%20AKADEM%C4%B0K%20TAKV%C4%B0MLER/2025-2026%20On%20Lisans%20ve%20Lisans%20Akademik%20Takvim%20ders%20izleme%20formu%20ekli.pdf">Akademik Takvim </a></li><li><a class="" target="_blank" href="/tr/news-detail/2026-2027-egitim-ogretim-yili-guz-yariyili-ders-programi/21848">Ders Programı </a></li><li><a class="" target="_self" href="#">Danışman Listesi </a></li><li><a class="" target="_self" href="#">Sınav Programı </a></li><li><a class="" target="_self" href="/tr/page/egitim-amaclari/5939">Eğitim Amaçları </a></li><li><a class="" target="_self" href="/tr/page/program-ciktilari/5940">Program Çıktıları </a></li><li><a class="" target="_blank" href="https://oidb.giresun.edu.tr/Files/ckFiles/79-123-150-29/%C3%96%C4%9Frenci%20%C4%B0%C5%9Fleri%20Daire%20Ba%C5%9Fkanl%C4%B1%C4%9F%C4%B1/y%C3%B6nergeler/MUEHENDISLIK_FAKUELTESI_STAJ_YOENERGESI.pdf">Staj Yönergesi </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="#">Araştırma </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/yayinlar/5942">Bilimsel Yayınlar </a></li><li><a class="" target="_self" href="#">Bilimsel Etkinlikler </a></li><li><a class="" target="_self" href="#">Proje ve Girişimcilik Faaliyetleri </a></li><li><a class="" target="_self" href="#">İşbirlikler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Faaliyetler </a><ul class="sub-menu"><li><a class="" target="_self" href="#">Toplumsal Odaklı Projeler </a></li><li><a class="" target="_self" href="#">Eğitim ve Bilinçlendirme </a></li><li><a class="" target="_self" href="#">Gönüllük Faaliyetleri </a></li><li><a class="" target="_self" href="#">Toplumla Bütünleşik Etkinlikler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="#">Akreditasyon </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-formlari/5943">Öğrenci Formları </a></li><li><a class="" target="_blank" href="https://muhendislik.giresun.edu.tr/tr/page/personel-formlari/4018">Personel Formları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Aday Öğrenciler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/baslarken/5944">Başlarken </a></li><li><a class="" target="_self" href="/tr/page/bolum-tanitimi/5945">Bölüm Tanıtımı </a></li><li><a class="" target="_self" href="/tr/page/sikca-sorulan-sorular/5946">Sıkça Sorulan Sorular </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/iletisim/5947">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/contact">Birim İletişim </a></li><li><a class="" target="_self" href="/tr/contact">Bize Ulaşın </a></li></ul></li>
+</ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </header>
+
+
+
+    <div>
+        <div class="container">         
+            <div class="row">
+
+                    <div class="col-md-12">
+                        
+
+
+<div class="">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-post-container">
+                <div class="widget-main-title">
+                    <h4 style="text-transform: none !important; font-size:14px !important" class="widget-title text-center">
+                        2026-2027 Eğitim-&#214;ğretim Yılı G&#252;z Yarıyılı Ders Programı
+                    </h4>
+                </div>
+                <div style="min-height:390px" class="blog-post-inner">
+                    <h4 style="text-transform: none !important; margin-bottom: 10px; color: grey;" class="widget-title text-left">
+                        <i class="fa fa-calendar-o"></i> 03 Ağustos 2026 Pazartesi
+                    </h4>
+                    <div>
+                        2026-2027 Eğitim-&Ouml;ğretim Yılı G&uuml;z Yarıyılı Ders Programını indirmek i&ccedil;in <a href="/Files/ckFiles/bilgisayar-giresun-edu-tr/course_program/2026-2027_fall/2026-2027 Güz Bilgisayar Mühendisliği Bölümü Ders Programı__.pdf" target="_blank">tıklayınız</a>.
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+<div class="widget-main" style="max-height: 500px; overflow: hidden;">
+    <div class="widget-main-title">
+        <h4 class="widget-title">Hızlı Erişim</h4>
+    </div>
+    <div id="homelinks" class="widget-inner" style="height:465px; padding:0; overflow: auto;">
+        <ul class="nav nav-list hizli-erisim">
+
+                <li><a href="https://ubs.giresun.edu.tr" target="_blank">&#214;ğrenci Bilgi Sistemi</a></li>
+                <li><a href="http://eders.giresun.edu.tr" target="_blank">e-Ders</a></li>
+                <li><a href="http://uzem.giresun.edu.tr" target="_blank">UZEM</a></li>
+                <li><a href="/tr/page/bolum-tanitimi/5945" target="_blank">B&#246;l&#252;m Tanıtımı</a></li>
+                <li><a href="/tr/page/sikca-sorulan-sorular/5946" target="_blank">Sık&#231;a Sorulan Sorular</a></li>
+                <li><a href=" http://erasmus.giresun.edu.tr " target="_blank">Erasmus Programı</a></li>
+                <li><a href=" http://farabi.giresun.edu.tr" target="_blank">Farabi Programı</a></li>
+                <li><a href=" http://mevlana.giresun.edu.tr" target="_blank">Mevlana Programı</a></li>
+                <li><a href=" http://kddb.giresun.edu.tr" target="_blank">K&#252;t&#252;phane</a></li>
+                <li><a href="https://ubs.giresun.edu.tr/ogrenci/ebp/organizasyon.aspx?kultur=tr-TR&amp;Mod=1&amp;ustbirim=7&amp;birim=6&amp;altbirim=-1&amp;program=1581&amp;organizasyonId=444&amp;mufredatTurId=932001" target="_blank">Ders Kataloğu</a></li>
+                <li><a href="https://mbs.giresun.edu.tr" target="_blank">Mezun Bilgi Sistemi</a></li>
+                <li><a href=" http://eduroam.giresun.edu.tr" target="_blank">Eduroam</a></li>
+
+        </ul>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+
+</div>
+
+                    </div>
+
+                <div style="clear:both;"></div>
+
+            </div>
+
+            
+
+            
+
+            
+
+
+        </div>
+    </div>
+
+
+
+    <footer id="footer" class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <h4 class="footer-widget-title">İletişim</h4>
+                    <p>Giresun &#220;niversitesi M&#252;hendislik Fak&#252;ltesi G&#252;re Yerleşkesi 28200 / GİRESUN</p>
+                </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-4" style="background-size: 100%; background-image: url(/_Resources/images/giresun-rektorluk.png); background-position: center; background-repeat: no-repeat; height: 180px;">
+                    </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4 text-right">
+                    <p>
+                            <strong>Telefon : </strong>
+0 (454) 310 17 40<br />
+
+                            <strong>Faks : </strong>
+0 (454) 310 17 49<br />
+
+                            <strong>E-Posta : </strong>
+bilgisayar@giresun.edu.tr<br />
+
+
+                    </p>
+
+                    <div class="footer-media-icons pull-right">
+                        
+
+
+
+
+                                                                                                                                                                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12 text-center">
+            <div class="bottom-footer">
+                    <p class="small-text">2022 | Bilgisayar M&#252;hendisliği B&#246;l&#252;m&#252; | Giresun &#220;niversitesi</p>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+
+    </footer>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('body').css('margin-bottom', Math.ceil($('.site-footer').height() + 66) + 'px');
+
+            $("#search-link").click(function (e) {
+                e.preventDefault();
+                $("#search-container").slideToggle();
+            })
+
+            siteGenislik();
+
+            $(window).resize(function () {
+                siteGenislik();
+            });
+        });
+
+
+        function siteGenislik() {
+            var siteGenislikVarMi = "True";
+
+            if (siteGenislikVarMi == "False") {
+                if ($(window).width() >= 1200) {
+                    $('.container').css('width', '1170px');
+                    $('#htmlKodBlok').css('display', "block");
+                    $('#htmlKod').css('display', "block");
+                    $('.Search').css('display', "block");
+                    $('.img-responsive').css('height', '120px');
+                    $('.spanFont').css('font-size', '26px');
+                    $('.spanFont').css('width', '589px');
+                    $('.spanFont2').css('font-size', '20px');
+                }
+                else if ($(window).width() >= 992) {
+                    $('.container').css('width', '970px');
+                    $('#htmlKodBlok').css('display', "none");
+                    $('#htmlKod').css('display', "none");
+                    $('.Search').css('display', "none");
+                    $('.img-responsive').css('height', '120px');
+                    $('.spanFont').css('font-size', '26px');
+                    $('.spanFont').css('width', '589px');
+                    $('.spanFont2').css('font-size', '20px');
+                }
+                else if ($(window).width() >= 768) {
+                    $('.container').css('width', '750px');
+                    $('#htmlKodBlok').css('display', "none");
+                    $('#htmlKod').css('display', "none");
+                    $('.Search').css('display', "none");
+                    $('.img-responsive').css('height', '120px');
+                    $('.spanFont').css('font-size', '26px');
+                    $('.spanFont').css('width', '589px');
+                    $('.spanFont2').css('font-size', '20px');
+                }
+                else if ($(window).width() < 768) {
+                    $('.container').css('width', 'auto');
+                    $('#htmlKodBlok').css('display', "none");
+                    $('#htmlKod').css('display', "none");
+                    $('.Search').css('display', "none");
+                    $('.img-responsive').css('height', '60px');
+                    $('.spanFont').css('font-size', '16px');
+                    $('.spanFont').css('width', '50%');
+                    $('.spanFont2').css('font-size', '12px');
+                }
+            }
+            else {
+                if ($(window).width() >= 1200) {
+                    $('#htmlKodBlok').css('display', 'block');
+                    $('#htmlKod').css('display', 'block');
+                    $('.Search').css('display', "block");
+                    $('.img-responsive').css('height', '120px');
+                    $('.spanFont').css('font-size', '26px');
+                    $('.spanFont').css('width', '589px');
+                    $('.spanFont2').css('font-size', '20px');
+                }
+                else if ($(window).width() >= 992 || $(window).width() >= 768) {
+                    $('#htmlKodBlok').css('display', "none");
+                    $('#htmlKod').css('display', "none");
+                    $('.Search').css('display', "none");
+                    $('.img-responsive').css('height', '120px');
+                    $('.spanFont').css('font-size', '26px');
+                    $('.spanFont').css('width', '589px');
+                    $('.spanFont2').css('font-size', '20px');
+                }
+                else if ($(window).width() < 768) {
+                    $('#htmlKodBlok').css('display', "none");
+                    $('#htmlKod').css('display', "none");
+                    $('.Search').css('display', "none");
+                    $('.img-responsive').css('height', '60px');
+                    $('.spanFont').css('font-size', '16px');
+                    $('.spanFont').css('width', '50%');
+                    $('.spanFont2').css('font-size', '12px');
+                }
+            }
+        }
+
+        function showLoading() {
+            var html =
+                "<div style=\"width: auto; height: auto; display: block;\" class=\"fancybox-overlay fancybox-overlay-fixed\"> </div>" +
+                    "<div id=\"fancybox-loading\"> " +
+                    "<div></div>" +
+                    "</div>";
+
+            var htmlContent = "<div id=\"divBekle\">" + html + "</div>";
+            $("body").append(htmlContent);
+        }
+
+        function hideLoading() {
+            $("#divBekle").remove();
+        }
+
+        function changeLang(shortTitle) {
+
+            var url = window.location.href;
+
+            if (url.indexOf("/tr/") == -1) {
+                window.location.href = "/" + shortTitle;
+            } else {
+                var newUrl = url.replace("/tr/", "/" + shortTitle + "/");
+                window.location.href = newUrl;
+            }
+        }
+
+    </script>
+    <script src="/_Resources/js/custom.js?v=3"></script>
+    <script src="/_Resources/js/plugins.js"></script>
+
+
+
+    
+
+
+
+</body>
+</html>

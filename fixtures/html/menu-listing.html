@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="tr"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="tr"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="tr"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="tr">
+<!--<![endif]-->
+<head>
+    <title>Yemek Menüsü | GİRESUN ÜNİVERSİTESİ</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Giresun - Bilgi İşlem Daire Başkanlığı" />
+    <link rel="stylesheet" href='/_Resources/css/google.css' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="/_Resources/bootstrap/css/bootstrap.css" />
+    <link href="/_Resources/js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/superfish.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/yamm.css" />
+    <link href="/_Resources/js/fullcalendar/fullcalendar.min.css?v=2" rel="stylesheet" />
+    <link href="/Content/themes/base/css?v=myqT7npwmF2ABsuSaHqt8SCvK8UFWpRv7T4M8r3kiK01" rel="stylesheet"/>
+
+    <style type="text/css">
+        #ui-datepicker-div {
+            font-size: 12px;
+        }
+
+        #calendar .fc-day-top {
+            padding-top: 22px;
+            text-align: center;
+        }
+
+        #calendar .fc-more {
+            color: #707070;
+        }
+
+        #calendar .fc-day-number {
+            float: none;
+            color: #707070;
+            /*        position: absolute;*/
+            /*        text-align: center;*/
+        }
+
+        #calendar .fc-center h2 {
+            font-size: 18px;
+        }
+
+        #calendar .fc-head {
+            color: #f18419;
+        }
+
+            #calendar .fc-head td, #calendar .fc-head tr {
+                border: none;
+            }
+
+        #calendar .fc-icon-left-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-icon-right-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-title {
+            color: #FFF;
+        }
+
+        #calendar .fc-day-header {
+            border: none;
+        }
+
+        #calendar .fc-today {
+            background-color: #f18419;
+            border-right: 1px solid #c5c5c5;
+            cursor: pointer;
+        }
+
+            #calendar .fc-today .fc-day-number {
+                color: #FFF;
+            }
+
+        #calendar button {
+            border: none;
+            background: transparent;
+        }
+
+        #calendar .fc-event {
+            background-color: #f18419;
+            border: none;
+            font-size: .75em;
+            /* width: 16px;*/
+            display: none;
+        }
+
+        .takvim-div {
+            width: 400px;
+            /*    height: 400px;*/
+            float: left;
+            padding-bottom: 20px;
+        }
+
+        .takvim-div-genis {
+            float: left;
+            /*    width: 600px;*/
+            /*    height: 700px;*/
+            padding-bottom: 30px;
+        }
+
+            .takvim-div-genis #calendar .fc-day-top {
+                padding-top: 40px !important;
+            }
+
+        .event-gri {
+            background-color: #c5c5c5;
+            cursor: pointer;
+        }
+
+            .event-gri .fc-day-number {
+                color: #f18419;
+            }
+    </style>
+
+
+    
+
+
+
+    
+    <script src="/bundles/jquery?v=JzhfglzUfmVF2qo-weTo-kvXJ9AJvIRBLmu11PgpbVY1"></script>
+
+    <script src="/bundles/jqueryui?v=EHft7nwilnDMnejvwTyEKn_C5lwIsN1M3Xyb8c9OmSQ1"></script>
+
+
+    <script src="/_Resources/js/fancybox/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="/_Resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/_Resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="/_Resources/js/superfish.js"></script>
+    
+    <script src="/_Resources/js/jquery.nicescroll.min.js?v=2"></script>
+    <script src="/_Resources/js/fullcalendar/moment.min.js"></script>
+    <script src='/_Resources/js/fullcalendar/fullcalendar.min.js'></script>
+    <script src='/_Resources/js/fullcalendar/locale-all.js'></script>
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt=""/>
+        </a>
+    </div>
+    <![endif]-->
+    
+
+</head>
+<body>
+    <script>
+        $(document).ready(function () {
+
+            $('#menu a').each(function () { // menüye ikon ekleme kısmı
+                if ($(this).parent().children().length > 1) {
+                    $(this).html($(this).html() + '<i class="fa fa-angle-down"></i>');
+                }
+            });
+
+            $(".fancyImageGallery").fancybox();
+            $(".fancyimg").fancybox();
+
+            $(".dikeyMenu > li > .has-sub").click(function (e) {
+                e.preventDefault();
+
+                var index = $(this).index(".dikeyMenu > li > .has-sub");
+
+                $(".sub-menu").not(':eq(' + index + ')').slideUp();
+
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+            $(".dikeyMenu .sub-menu .has-sub").click(function (e) {
+                e.preventDefault();
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+            var a = $('.responsive_menu .main_menu > ul > li > a');
+            a.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).next().slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).prev().removeClass('open');
+                } else {
+                    a.next().slideUp();
+                    a.parent().removeClass('open');
+                    a.prev().removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).prev().addClass('open');
+                    $(this).next().slideDown();
+                }
+            });            var abtn = $('.responsive_menu .main_menu > ul > li > ul > li > a');
+            abtn.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).parent().find('ul').slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).removeClass('open');
+                } else {
+                    abtn.next().slideUp();
+                    abtn.parent().removeClass('open');
+                    abtn.removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).addClass('open');
+                    $(this).parent().find('ul').slideDown();
+                }
+            });
+
+        });
+
+        function OpenPopUp(url, width, height) {
+
+            $.fancybox({
+                'width': width,
+                'height': height,
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe',
+                'href': url,
+                success: function (dd) {
+                    parent.$.fancybox.close();
+
+                }
+            });
+
+        }
+
+    </script>
+
+
+    <div class="responsive-navigation visible-sm visible-xs">
+            <a href="#" class="menu-toggle-btn"><i class="fa fa-bars"></i></a>
+            <div class="responsive_menu">
+
+<ul class="main_menu">
+    <ul id="menu">
+        <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/8519">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/misyon-ve-vizyon/2586">Misyon ve Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/8518">Temel Değerler </a></li></ul></li><li><a class="" target="_self" href="/tr/page/idari-birim-yonetimi/8520">İdari Birim Yönetimi </a></li><li><a class="has-sub" target="_self" href="#">Organizasyon Şeması </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/personel-bazli-organizasyon-semasi">Personel Bazlı Organizasyon Şeması </a></li><li><a class="" target="_blank" href="/tr/birim-bazli-organizasyon-semasi">Birim Bazlı Organizasyon Şeması </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İdari Birim Komisyonları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/etkinlik-komisyonu/8521">Etkinlik Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/etkinlik-koordinasyon-kurulunun-gorevleri/8522">Etkinlik Koordinasyon Kurulunun Görevleri </a></li><li><a class="" target="_self" href="/tr/page/icra-kurulu/8523">İcra Kurulu </a></li><li><a class="" target="_self" href="/tr/page/icra-kurulunun-gorevleri/8524">İcra Kurulunun Görevleri </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8525">Birim Kalite Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonunun-gorevleri/8526">Birim Kalite Komisyonunun Görevleri </a></li></ul></li><li><a class="" target="_self" href="/tr/page/altyapi-ve-fiziki-imkanlar/8527">Altyapı ve Fiziki İmkanlar </a></li><li><a class="" target="_self" href="/tr/page/yonetim/2667">Yönetim </a></li><li><a class="" target="_self" href="/tr/page/kurumsal-bilgiler/2657">Kurumsal Bilgiler </a></li></ul></li><li><a class="has-sub" target="_blank" href="/tr/idaripersonel">Personel </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/idaripersonel">İdari Personel </a></li><li><a class="" target="_self" href="/tr/page/giresun-universitesi-saglik-kultur-ve-spor-daire-baskanligi-gorev-tanimlarimlari/2748">Görev Tanımları </a></li><li><a class="" target="_self" href="/tr/page/gorev-devir-teslim-formu/8580">Personel Dokümanları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Hizmetler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/verilen-hizmetler/8552">Verilen Hizmetler </a></li><li><a class="" target="_self" href="/tr/page/kullanici-yardim/8553">Kullanıcı Yardımı </a></li></ul></li><li><a class="has-sub" target="_blank" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="http://kalite.giresun.edu.tr/">Kalite ve Akreditasyon </a></li><li><a class="has-sub" target="_self" href="#">Kalite Politikaları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/universite-kalite-politikalari/3060">Üniversite Kalite Politikaları </a></li><li><a class="" target="_self" href="/tr/page/-politikalar/3054">Birim Kalite Politikaları </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/-birim-kalite-komisyon-listesi/3049">Birim Kalite Komisyonu </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/-birim-kalite-toplantisi/4180">2024-2025 Birim Kalite Toplantısı 1 </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-birim-kalite-toplantisi-2/6229">2024-2025 Birim Kalite Toplantısı 2 </a></li></ul></li><li><a class="" target="_self" href="/tr/page/puko-formlari/8568">Birim PUKÖ Formları </a></li><li><a class="has-sub" target="_self" href="#">Paydaşlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ic-paydaslarimiz/4148">İç Paydaşlar </a></li><li><a class="" target="_self" href="/tr/page/dis-paydaslarimiz/4149">Dış Paydaşlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İç Kontrol </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ic-kontrol-kararlilik-beyani/9632">İç Kontrol Kararlılık Beyanı </a></li><li><a class="" target="_self" href="/tr/page/surec-akis-semalari/2708">Süreç Akış Şemaları </a></li><li><a class="" target="_blank" href="/tr/page/is-akis-surecleri/2637">İş Akış Süreçleri </a></li><li><a class="" target="_self" href="/tr/page/is-aanliz-formu/2868">İş Analiz Formu </a></li><li><a class="" target="_self" href="/tr/page/hizmet-standartlari/2728">Hizmet Standartları </a></li><li><a class="" target="_blank" href="/tr/page/hizmet-envanteri/2729">Hizmet Envanteri </a></li><li><a class="" target="_self" href="/tr/page/giresun-universitesi-saglik-kultur-ve-spor-daire-baskanligi-gorev-tanimlari/2748">Görev Tanımları </a></li><li><a class="" target="_self" href="/tr/page/hassas-gorevler/2743">Hassas Görevler </a></li><li><a class="" target="_self" href="/tr/page/birim-risk-raporu/2869">Risk Değerlendirme </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Raporlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/faaliyet-raporlari/2623">Faaliyet Raporları </a></li><li><a class="" target="_self" href="/tr/page/oz-degerlendirme-raporlari/3065">Öz Değerlendirme Raporları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Mevzuat </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/giresun-universitesi-etkinlik-yonergesi/2603">Yönetmelik/Yönergeler </a></li><li><a class="has-sub" target="_self" href="#">Kişisel Verilerin Korunması Kanunu </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/aydinlatma-metinleri/3096">Aydınlatma Metinleri </a></li><li><a class="" target="_self" href="/tr/page/acik-riza-metinleri/3097">Açık Rıza Metinleri </a></li></ul></li><li><a class="" target="_blank" href="/tr/page/dokumanlar/2820">Dokümanlar </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="#">Öğrenci </a><ul class="sub-menu"><li><a class="" target="_self" href="https://odeme.giresun.edu.tr:8443/smartpay/login.faces">Yemek Kartına Para Yükleme  </a></li><li><a class="" target="_self" href="/Files/ckFiles/sksdb-giresun-edu-tr/yemek kartı klavuz - Copy 1.pdf">Yemek Kartına Para Yükleme İşlem Klavuzu </a></li><li><a class="has-sub" target="_self" href="#">Kısmi Zamanlı </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/aciklamalar/2646">Açıklamalar </a></li><li><a class="" target="_blank" href="/tr/page/kismi-formlar/2656">Formlar </a></li><li><a class="" target="_blank" href="/tr/page/sikca-sorulan-sorular/2627">Sıkça Sorulan Sorular </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Yemek Bursu </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/aciklamalar/2731">Açıklamalar </a></li><li><a class="" target="_blank" href="/tr/page/formlar/2628">Formlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Genel Sağlık Sigortası </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/news-detail/genel-saglik-sigortasi-bilgilendirme/991">Açıklamalar </a></li></ul></li></ul></li><li><a class="has-sub" target="_blank" href="#">Topluluk </a><ul class="sub-menu"><li><a class="" target="_blank" href="https://ogrencitopluluk.giresun.edu.tr">Öğrenci Toplulukları Otomasyonu </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-listesi/4173">Topluluk Listesi </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-etkinlik-degerlendirme-raporlari/6238">2024-2025 Güz Dönemi Etkinlik Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-bahar-donemi-etkinlik-degerlendirme-raporlari/8164">2024-2025 Bahar Dönemi Etkinlik Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/topluluk-faaliyetleri/6263">Topluluk Faaliyetleri </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-aciklamalar/2758">Açıklamalar </a></li><li><a class="" target="_self" href="/tr/page/sablon-ornekleri/2644">Şablon Örnekleri </a></li><li><a class="" target="_self" href="/tr/page/topluluk-formlar/8569"> Formlar </a></li><li><a class="" target="_self" href="/tr/page/stant-acma-kurallari/2879">Stant Açma Kuralları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Birimler </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Kültür Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kultur-hizmetleri-birimi/2647">Birim Yetkilisi </a></li><li><a class="has-sub" target="_self" href="#">Öğrenci Toplulukları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-aciklamalar/2758">Açıklamalar </a></li><li><a class="" target="_self" href="/tr/page/sablon-ornekleri/2644">Şablon Örnekleri </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-formlar/2774">Formlar </a></li><li><a class="" target="_self" href="/tr/page/stant-acma-kurallari/2879">Stant Açma Kuralları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Etkinlik Görselleri </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kurulus-yildonumu/2859">Kuruluş Yıldönümü </a></li><li><a class="" target="_self" href="/tr/page/mezuniyet-fotograflari/2660">Mezuniyet Fotoğrafları </a></li><li><a class="" target="_self" href="/tr/page/universitemiz-bahar-senlikleri/2658">Bahar Şenliği </a></li><li><a class="" target="_self" href="/tr/page/topluluk-tanitim-gunleri/3107">Topluluk Tanıtım Günleri </a></li><li><a class="" target="_self" href="/tr/page/nevruz/2663">Nevruz Bayramı </a></li><li><a class="" target="_self" href="/tr/page/hamsi-senligi/8571">Hamsi Şenliği </a></li><li><a class="" target="_self" href="/tr/page/spor-faaliyetleri/2664">Spor Faaliyetleri </a></li></ul></li><li><a class="" target="_self" href="/tr/page/konferans-salonlari/2649">Konferans Salonları </a></li><li><a class="" target="_self" href="/tr/page/salon-stant-derslik-ucretleri/2651">Salon, Stant, Derslik Ücretleri </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Mali İşler Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/mali-isler/2666">Birim Yetkilisi </a></li><li><a class="" target="_self" href="/tr/page/usta-calistirici/2669">Usta Çalıştırıcı </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Sağlık Beslenme Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/beslenme-hizmetleri-birimi/2670">Birim Yetkilisi </a></li><li><a class="has-sub" target="_blank" href="#">Mutfak ve Yemekhaneler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/mutfak-ve-yemekhane-kapasiteleri/2973">Mutfak ve Yemekhane Kapasiteleri </a></li><li><a class="" target="_self" href="/tr/page/2020-yili-ogrenci-ve-personel-icin-yemek-ucretleri/2727">Yemek Katkı Bedelleri </a></li><li><a class="" target="_self" href="/tr/page/mutfak-ve-yemekhane-kontrol-teskilati/8572">Mutfak ve Yemekhane Kontrol Teşkilatı Üyeleri </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/kantin-kafeterya-ve-diger-kiracilar/2635">Kantin / Kafeteryalar / Diğer </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/kantin-ve-kafeterya-kiracilarinin-uymasi-gereken-kurallar/2645">Kiracıların Uyması Gereken Kurallar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/formlar/2624">Formlar </a></li><li><a class="" target="_blank" href="/tr/page/kantin-yiyecek-icecek-fiyatlari/2726">Fiyat Listesi </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Spor Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/13-kultur-sanat-ve-spor-senlikleri/2723">Birim Yetkilisi </a></li><li><a class="" target="_self" href="/tr/page/13-kultur-sanat-ve-spor-senlikleri/2759">Spor Şenlikleri </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/yemek-menusu/4175">Yemek Menü </a><ul class="sub-menu"><li><a class="" target="_self" href="https://sksdb.giresun.edu.tr/Files/ckFiles/sksdb-giresun-edu-tr/A%C4%9EUSTOS%202026%20YEMEK%20MEN%C3%9C%20(1).pdf">Ağustos Ayı Yemek Menüsü </a></li><li><a class="" target="_self" href="https://sksdb.giresun.edu.tr/Files/ckFiles/sksdb-giresun-edu-tr/EYL%C3%9CL%202026%20YEMEK%20MEN%C3%9C-1.pdf">Eylül Ayı Yemek Menüsü </a></li></ul></li><li><a class="has-sub" target="_self" href="#">S.S.S. </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ogrenci-topluluk-islemleri/8528">Öğrenci Topluluk İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/kismi-zamanli-ogrenci-islemleri/8531">Kısmi Zamanlı Öğrenci İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/unides-projesi-islemleri/8529">Ünides Projesi İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/etkinlik-basvuru-sureci-islemleri/8530">Etkinlik Başvuru Süreci İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/beslenme-hizmetleri-islemleri/8532">Beslenme Hizmeti İşlemleri </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/contact">Bize Ulaşın </a></li><li><a class="" target="_self" href="/tr/page/iletisim-bilgileri/2607">Telefon Rehberi </a></li></ul></li>
+    </ul>
+</ul>
+
+
+            </div>
+        </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 header-logo">
+                    <div class="logo">
+                        <a href="/tr">
+                            <img style="height: 120px; padding: 10px 0px; float:left;" class="img-responsive" src="/Files/Images/_-8410.png" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 header-right pull-right">
+                    <ul class="small-links">
+                                <li><a href="javascript:changeLang('tr');"><b>TR</b></a></li>
+
+                    </ul>
+                    <ul class="small-links">
+                        <li><a target="_blank" href="http://www.giresun.edu.tr">&#220;niversite Ana Sayfa</a></li>
+                        
+                    </ul>
+                    <select style="color: #000; display: none" id="dil">
+                                <option value="tr">TR</option>
+
+                    </select>
+
+                    <div class="" style="margin-top:47px;margin-right:2px;">
+                        <form action="/tr/search" method="get" class="search-form">
+                            <div class="form-group has-feedback" style="margin-bottom:1px;">
+                                <label for="s" class="sr-only">Ara</label>
+                                <input type="text" class="form-control" name="s" id="s" placeholder="Ara" autocomplete="off">
+                                <span class="fa fa-search form-control-feedback"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="nav-bar-main" role="navigation">
+                <div class="container">
+                    <div class="navbar yamm main-navigation clearfix visible-md visible-lg">
+                        <div class="navbar-header center">
+                            <a style="display: block; padding: 9px 20px;" href="/"><i class="fa fa-home"></i></a>
+                        </div>
+                        <div id="navbar-collapse-grid" class="navbar-collapse collapse">
+
+<ul id="menu" class="nav navbar-nav sf-menu">
+    <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/8519">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/misyon-ve-vizyon/2586">Misyon ve Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/8518">Temel Değerler </a></li></ul></li><li><a class="" target="_self" href="/tr/page/idari-birim-yonetimi/8520">İdari Birim Yönetimi </a></li><li><a class="has-sub" target="_self" href="#">Organizasyon Şeması </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/personel-bazli-organizasyon-semasi">Personel Bazlı Organizasyon Şeması </a></li><li><a class="" target="_blank" href="/tr/birim-bazli-organizasyon-semasi">Birim Bazlı Organizasyon Şeması </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İdari Birim Komisyonları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/etkinlik-komisyonu/8521">Etkinlik Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/etkinlik-koordinasyon-kurulunun-gorevleri/8522">Etkinlik Koordinasyon Kurulunun Görevleri </a></li><li><a class="" target="_self" href="/tr/page/icra-kurulu/8523">İcra Kurulu </a></li><li><a class="" target="_self" href="/tr/page/icra-kurulunun-gorevleri/8524">İcra Kurulunun Görevleri </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8525">Birim Kalite Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonunun-gorevleri/8526">Birim Kalite Komisyonunun Görevleri </a></li></ul></li><li><a class="" target="_self" href="/tr/page/altyapi-ve-fiziki-imkanlar/8527">Altyapı ve Fiziki İmkanlar </a></li><li><a class="" target="_self" href="/tr/page/yonetim/2667">Yönetim </a></li><li><a class="" target="_self" href="/tr/page/kurumsal-bilgiler/2657">Kurumsal Bilgiler </a></li></ul></li><li><a class="has-sub" target="_blank" href="/tr/idaripersonel">Personel </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/idaripersonel">İdari Personel </a></li><li><a class="" target="_self" href="/tr/page/giresun-universitesi-saglik-kultur-ve-spor-daire-baskanligi-gorev-tanimlarimlari/2748">Görev Tanımları </a></li><li><a class="" target="_self" href="/tr/page/gorev-devir-teslim-formu/8580">Personel Dokümanları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Hizmetler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/verilen-hizmetler/8552">Verilen Hizmetler </a></li><li><a class="" target="_self" href="/tr/page/kullanici-yardim/8553">Kullanıcı Yardımı </a></li></ul></li><li><a class="has-sub" target="_blank" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="http://kalite.giresun.edu.tr/">Kalite ve Akreditasyon </a></li><li><a class="has-sub" target="_self" href="#">Kalite Politikaları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/universite-kalite-politikalari/3060">Üniversite Kalite Politikaları </a></li><li><a class="" target="_self" href="/tr/page/-politikalar/3054">Birim Kalite Politikaları </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/-birim-kalite-komisyon-listesi/3049">Birim Kalite Komisyonu </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/-birim-kalite-toplantisi/4180">2024-2025 Birim Kalite Toplantısı 1 </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-birim-kalite-toplantisi-2/6229">2024-2025 Birim Kalite Toplantısı 2 </a></li></ul></li><li><a class="" target="_self" href="/tr/page/puko-formlari/8568">Birim PUKÖ Formları </a></li><li><a class="has-sub" target="_self" href="#">Paydaşlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ic-paydaslarimiz/4148">İç Paydaşlar </a></li><li><a class="" target="_self" href="/tr/page/dis-paydaslarimiz/4149">Dış Paydaşlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İç Kontrol </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ic-kontrol-kararlilik-beyani/9632">İç Kontrol Kararlılık Beyanı </a></li><li><a class="" target="_self" href="/tr/page/surec-akis-semalari/2708">Süreç Akış Şemaları </a></li><li><a class="" target="_blank" href="/tr/page/is-akis-surecleri/2637">İş Akış Süreçleri </a></li><li><a class="" target="_self" href="/tr/page/is-aanliz-formu/2868">İş Analiz Formu </a></li><li><a class="" target="_self" href="/tr/page/hizmet-standartlari/2728">Hizmet Standartları </a></li><li><a class="" target="_blank" href="/tr/page/hizmet-envanteri/2729">Hizmet Envanteri </a></li><li><a class="" target="_self" href="/tr/page/giresun-universitesi-saglik-kultur-ve-spor-daire-baskanligi-gorev-tanimlari/2748">Görev Tanımları </a></li><li><a class="" target="_self" href="/tr/page/hassas-gorevler/2743">Hassas Görevler </a></li><li><a class="" target="_self" href="/tr/page/birim-risk-raporu/2869">Risk Değerlendirme </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Raporlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/faaliyet-raporlari/2623">Faaliyet Raporları </a></li><li><a class="" target="_self" href="/tr/page/oz-degerlendirme-raporlari/3065">Öz Değerlendirme Raporları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Mevzuat </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/giresun-universitesi-etkinlik-yonergesi/2603">Yönetmelik/Yönergeler </a></li><li><a class="has-sub" target="_self" href="#">Kişisel Verilerin Korunması Kanunu </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/aydinlatma-metinleri/3096">Aydınlatma Metinleri </a></li><li><a class="" target="_self" href="/tr/page/acik-riza-metinleri/3097">Açık Rıza Metinleri </a></li></ul></li><li><a class="" target="_blank" href="/tr/page/dokumanlar/2820">Dokümanlar </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="#">Öğrenci </a><ul class="sub-menu"><li><a class="" target="_self" href="https://odeme.giresun.edu.tr:8443/smartpay/login.faces">Yemek Kartına Para Yükleme  </a></li><li><a class="" target="_self" href="/Files/ckFiles/sksdb-giresun-edu-tr/yemek kartı klavuz - Copy 1.pdf">Yemek Kartına Para Yükleme İşlem Klavuzu </a></li><li><a class="has-sub" target="_self" href="#">Kısmi Zamanlı </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/aciklamalar/2646">Açıklamalar </a></li><li><a class="" target="_blank" href="/tr/page/kismi-formlar/2656">Formlar </a></li><li><a class="" target="_blank" href="/tr/page/sikca-sorulan-sorular/2627">Sıkça Sorulan Sorular </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Yemek Bursu </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/aciklamalar/2731">Açıklamalar </a></li><li><a class="" target="_blank" href="/tr/page/formlar/2628">Formlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Genel Sağlık Sigortası </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/news-detail/genel-saglik-sigortasi-bilgilendirme/991">Açıklamalar </a></li></ul></li></ul></li><li><a class="has-sub" target="_blank" href="#">Topluluk </a><ul class="sub-menu"><li><a class="" target="_blank" href="https://ogrencitopluluk.giresun.edu.tr">Öğrenci Toplulukları Otomasyonu </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-listesi/4173">Topluluk Listesi </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-etkinlik-degerlendirme-raporlari/6238">2024-2025 Güz Dönemi Etkinlik Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-bahar-donemi-etkinlik-degerlendirme-raporlari/8164">2024-2025 Bahar Dönemi Etkinlik Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/topluluk-faaliyetleri/6263">Topluluk Faaliyetleri </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-aciklamalar/2758">Açıklamalar </a></li><li><a class="" target="_self" href="/tr/page/sablon-ornekleri/2644">Şablon Örnekleri </a></li><li><a class="" target="_self" href="/tr/page/topluluk-formlar/8569"> Formlar </a></li><li><a class="" target="_self" href="/tr/page/stant-acma-kurallari/2879">Stant Açma Kuralları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Birimler </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Kültür Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kultur-hizmetleri-birimi/2647">Birim Yetkilisi </a></li><li><a class="has-sub" target="_self" href="#">Öğrenci Toplulukları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-aciklamalar/2758">Açıklamalar </a></li><li><a class="" target="_self" href="/tr/page/sablon-ornekleri/2644">Şablon Örnekleri </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-topluluklari-formlar/2774">Formlar </a></li><li><a class="" target="_self" href="/tr/page/stant-acma-kurallari/2879">Stant Açma Kuralları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Etkinlik Görselleri </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kurulus-yildonumu/2859">Kuruluş Yıldönümü </a></li><li><a class="" target="_self" href="/tr/page/mezuniyet-fotograflari/2660">Mezuniyet Fotoğrafları </a></li><li><a class="" target="_self" href="/tr/page/universitemiz-bahar-senlikleri/2658">Bahar Şenliği </a></li><li><a class="" target="_self" href="/tr/page/topluluk-tanitim-gunleri/3107">Topluluk Tanıtım Günleri </a></li><li><a class="" target="_self" href="/tr/page/nevruz/2663">Nevruz Bayramı </a></li><li><a class="" target="_self" href="/tr/page/hamsi-senligi/8571">Hamsi Şenliği </a></li><li><a class="" target="_self" href="/tr/page/spor-faaliyetleri/2664">Spor Faaliyetleri </a></li></ul></li><li><a class="" target="_self" href="/tr/page/konferans-salonlari/2649">Konferans Salonları </a></li><li><a class="" target="_self" href="/tr/page/salon-stant-derslik-ucretleri/2651">Salon, Stant, Derslik Ücretleri </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Mali İşler Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/mali-isler/2666">Birim Yetkilisi </a></li><li><a class="" target="_self" href="/tr/page/usta-calistirici/2669">Usta Çalıştırıcı </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Sağlık Beslenme Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/beslenme-hizmetleri-birimi/2670">Birim Yetkilisi </a></li><li><a class="has-sub" target="_blank" href="#">Mutfak ve Yemekhaneler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/mutfak-ve-yemekhane-kapasiteleri/2973">Mutfak ve Yemekhane Kapasiteleri </a></li><li><a class="" target="_self" href="/tr/page/2020-yili-ogrenci-ve-personel-icin-yemek-ucretleri/2727">Yemek Katkı Bedelleri </a></li><li><a class="" target="_self" href="/tr/page/mutfak-ve-yemekhane-kontrol-teskilati/8572">Mutfak ve Yemekhane Kontrol Teşkilatı Üyeleri </a></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/kantin-kafeterya-ve-diger-kiracilar/2635">Kantin / Kafeteryalar / Diğer </a><ul class="sub-menu"><li><a class="" target="_blank" href="/tr/page/kantin-ve-kafeterya-kiracilarinin-uymasi-gereken-kurallar/2645">Kiracıların Uyması Gereken Kurallar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/formlar/2624">Formlar </a></li><li><a class="" target="_blank" href="/tr/page/kantin-yiyecek-icecek-fiyatlari/2726">Fiyat Listesi </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Spor Hizmetleri Birimi </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/13-kultur-sanat-ve-spor-senlikleri/2723">Birim Yetkilisi </a></li><li><a class="" target="_self" href="/tr/page/13-kultur-sanat-ve-spor-senlikleri/2759">Spor Şenlikleri </a></li></ul></li></ul></li><li><a class="has-sub" target="_self" href="/tr/page/yemek-menusu/4175">Yemek Menü </a><ul class="sub-menu"><li><a class="" target="_self" href="https://sksdb.giresun.edu.tr/Files/ckFiles/sksdb-giresun-edu-tr/A%C4%9EUSTOS%202026%20YEMEK%20MEN%C3%9C%20(1).pdf">Ağustos Ayı Yemek Menüsü </a></li><li><a class="" target="_self" href="https://sksdb.giresun.edu.tr/Files/ckFiles/sksdb-giresun-edu-tr/EYL%C3%9CL%202026%20YEMEK%20MEN%C3%9C-1.pdf">Eylül Ayı Yemek Menüsü </a></li></ul></li><li><a class="has-sub" target="_self" href="#">S.S.S. </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/ogrenci-topluluk-islemleri/8528">Öğrenci Topluluk İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/kismi-zamanli-ogrenci-islemleri/8531">Kısmi Zamanlı Öğrenci İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/unides-projesi-islemleri/8529">Ünides Projesi İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/etkinlik-basvuru-sureci-islemleri/8530">Etkinlik Başvuru Süreci İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/beslenme-hizmetleri-islemleri/8532">Beslenme Hizmeti İşlemleri </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/contact">Bize Ulaşın </a></li><li><a class="" target="_self" href="/tr/page/iletisim-bilgileri/2607">Telefon Rehberi </a></li></ul></li>
+</ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </header>
+
+
+
+    <div style="margin-bottom:150px;">
+
+        <div class="container">
+            <div class="row">
+
+                    <div class="col-md-12">
+                        
+
+
+
+
+
+
+
+<div class="row">
+<div id="sol_menu" class="col-md-3">
+
+<div class="widget-main">
+    <div id="sol_menu1" class="widget-main-title">
+        <a target="_self" href="#">
+            <h4 class="widget-title">Yemek Men&#252;s&#252;</h4>
+        </a>
+    </div>
+    <div class="widget-inner">
+        <div class="blog-categories">
+            <div class="row">
+                <ul id="sol_menu2" class="col-md-12">
+                    
+                        <li><a target="_self" href="/tr/page/yemek-kartina-para-yukleme-islemi-klavuzu/2673">Yemek Kartına Para Y&#252;kleme İşlemi Klavuzu</a></li>
+                        <li><a target="_self" href="/tr/page/yemek-kartina-para-yukleme-islemi/2687">Yemek Kartına Para Y&#252;kleme İşlemi</a></li>
+                        <li><a target="_self">.</a></li>
+                        <li><a target="_self" href="/tr/page/yemek-menusu/4175">Yemek Men&#252;s&#252;</a></li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div class="col-md-9">
+            <div class="widget-main">
+                <div class="widget-main-title"><h4 class="widget-title text-center" id="sayfa_ismi4">Yemek Men&#252;s&#252;</h4></div>
+            </div>
+            
+
+            <div style="text-align: justify;" class="blog-post-inner">
+                <a href="/Files/ckFiles/sksdb-giresun-edu-tr/AĞUSTOS 2026 YEMEK MENÜ (1).pdf">Ağustos 2026 Yemek Men&uuml;s&uuml;</a><br />
+<a href="/Files/ckFiles/sksdb-giresun-edu-tr/EYLÜL 2026 YEMEK MENÜ-1.pdf">Eyl&uuml;l 2026 Yemek Men&uuml;s&uuml;</a><br />
+<br />
+&nbsp;
+
+            </div>
+
+            
+            
+            
+            
+<style type="text/css">
+    #pdocs a {
+        color: #333;
+    }
+
+    #pdocs ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #pdocs ul, #pdocs li {
+        list-style-type: none;
+    }
+
+    #pdocs table {
+        font-size: 12px;
+    }
+
+        #pdocs table tr td, table tr th {
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+            #pdocs table tr td a {
+                display: block !important;
+                margin: 5px 0px;
+            }
+
+        #pdocs table tr :hover {
+            background-color: #ccc;
+        }
+</style>
+
+
+<div class="blog-post-inner">
+    <div style="background-color:#FFF" class="row">
+        <div id="pdocs">
+
+            <ul></ul>
+
+        </div>
+    </div>
+</div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+                    </div>
+
+                <div style="clear:both;"></div>
+
+            </div>
+        </div>
+
+
+    </div>
+    
+    <div style="clear:both;"></div>
+
+    <footer id="footer" class="site-footer">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <h4 class="footer-widget-title">İletişim</h4>
+                    <p>G&#252;re Yerleşkesi Pof.Dr.Ahmet Taner Kışlalı Cad. 28200 Merkez/Giresun</p>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4" style="background-size: 100%; background-image: url(/_Resources/images/giresun-rektorluk.png); background-position: center; background-repeat: no-repeat; height: 180px;">
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-4 text-right">
+                    <p>
+                            <strong>Tel : </strong>
+0 (454) 310 11 81 <br />
+
+                            <strong>Faks : </strong>
+0 (454) 310 11 84<br />
+
+                            <strong>E-Posta : </strong>
+sksdb@giresun.edu.tr  / skskultur@giresun.edu.tr                    </p>
+
+                    <ul class="footer-media-icons pull-right">
+                                                                                                                                                                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <div class="bottom-footer">
+                <p class="small-text">© 2026 Bilgi İşlem Daire Başkanlığı</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('body').css('margin-bottom', Math.ceil($('.site-footer').height() + 66) + 'px');
+
+            $("#search-link").click(function (e) {
+                e.preventDefault();
+                $("#search-container").slideToggle();
+            });
+
+        });
+
+        function showLoading() {
+            var html =
+                "<div style=\"width: auto; height: auto; display: block;\" class=\"fancybox-overlay fancybox-overlay-fixed\"> </div>" +
+                    "<div id=\"fancybox-loading\"> " +
+                    "<div></div>" +
+                    "</div>";
+
+            var htmlContent = "<div id=\"divBekle\">" + html + "</div>";
+            $("body").append(htmlContent);
+        }
+
+        function hideLoading() {
+            $("#divBekle").remove();
+        }
+
+        function changeLang(shortTitle) {
+
+            var url = window.location.href;
+
+            if (url.indexOf("/tr/") == -1) {
+                window.location.href = "/" + shortTitle;
+            } else {
+                var newUrl = url.replace("/tr/", "/" + shortTitle + "/");
+                window.location.href = newUrl;
+            }
+        }
+
+    </script>
+    <script src="/_Resources/js/custom.js"></script>
+    <script src="/_Resources/js/plugins.js"></script>
+
+
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a.collapsed").click(function (e) {
+                e.preventDefault();
+
+                var id = $(this).attr("href");
+                $(".panel-collapse").hide("normal");
+                $(id).show("normal");
+            });
+        });
+    </script>
+
+
+</body>
+</html>

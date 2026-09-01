@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="tr"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="tr"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="tr"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="tr">
+<!--<![endif]-->
+<head>
+    <title>2026-2027 AKADEMİK TAKVİMLER | GİRESUN ÜNİVERSİTESİ</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="author" content="Giresun - Bilgi İşlem Daire Başkanlığı" />
+    <link rel="stylesheet" href='/_Resources/css/google.css' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="/_Resources/bootstrap/css/bootstrap.css" />
+    <link href="/_Resources/js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/font-awesome.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/animate.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/style.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/superfish.css" />
+    <link type="text/css" rel="stylesheet" href="/_Resources/css/yamm.css" />
+    <link href="/_Resources/js/fullcalendar/fullcalendar.min.css?v=2" rel="stylesheet" />
+    <link href="/Content/themes/base/css?v=myqT7npwmF2ABsuSaHqt8SCvK8UFWpRv7T4M8r3kiK01" rel="stylesheet"/>
+
+    <style type="text/css">
+        #ui-datepicker-div {
+            font-size: 12px;
+        }
+
+        #calendar .fc-day-top {
+            padding-top: 22px;
+            text-align: center;
+        }
+
+        #calendar .fc-more {
+            color: #707070;
+        }
+
+        #calendar .fc-day-number {
+            float: none;
+            color: #707070;
+            /*        position: absolute;*/
+            /*        text-align: center;*/
+        }
+
+        #calendar .fc-center h2 {
+            font-size: 18px;
+        }
+
+        #calendar .fc-head {
+            color: #f18419;
+        }
+
+            #calendar .fc-head td, #calendar .fc-head tr {
+                border: none;
+            }
+
+        #calendar .fc-icon-left-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-icon-right-single-arrow {
+            color: #f18419;
+        }
+
+        #calendar .fc-title {
+            color: #FFF;
+        }
+
+        #calendar .fc-day-header {
+            border: none;
+        }
+
+        #calendar .fc-today {
+            background-color: #f18419;
+            border-right: 1px solid #c5c5c5;
+            cursor: pointer;
+        }
+
+            #calendar .fc-today .fc-day-number {
+                color: #FFF;
+            }
+
+        #calendar button {
+            border: none;
+            background: transparent;
+        }
+
+        #calendar .fc-event {
+            background-color: #f18419;
+            border: none;
+            font-size: .75em;
+            /* width: 16px;*/
+            display: none;
+        }
+
+        .takvim-div {
+            width: 400px;
+            /*    height: 400px;*/
+            float: left;
+            padding-bottom: 20px;
+        }
+
+        .takvim-div-genis {
+            float: left;
+            /*    width: 600px;*/
+            /*    height: 700px;*/
+            padding-bottom: 30px;
+        }
+
+            .takvim-div-genis #calendar .fc-day-top {
+                padding-top: 40px !important;
+            }
+
+        .event-gri {
+            background-color: #c5c5c5;
+            cursor: pointer;
+        }
+
+            .event-gri .fc-day-number {
+                color: #f18419;
+            }
+    </style>
+
+
+    
+
+
+
+    
+    <script src="/bundles/jquery?v=JzhfglzUfmVF2qo-weTo-kvXJ9AJvIRBLmu11PgpbVY1"></script>
+
+    <script src="/bundles/jqueryui?v=EHft7nwilnDMnejvwTyEKn_C5lwIsN1M3Xyb8c9OmSQ1"></script>
+
+
+    <script src="/_Resources/js/fancybox/jquery.fancybox.js"></script>
+
+    <script type="text/javascript" src="/_Resources/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/_Resources/js/modernizr.js"></script>
+    <script type="text/javascript" src="/_Resources/js/superfish.js"></script>
+    
+    <script src="/_Resources/js/jquery.nicescroll.min.js?v=2"></script>
+    <script src="/_Resources/js/fullcalendar/moment.min.js"></script>
+    <script src='/_Resources/js/fullcalendar/fullcalendar.min.js'></script>
+    <script src='/_Resources/js/fullcalendar/locale-all.js'></script>
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode">
+            <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt=""/>
+        </a>
+    </div>
+    <![endif]-->
+    
+
+</head>
+<body>
+    <script>
+        $(document).ready(function () {
+
+            $('#menu a').each(function () { // menüye ikon ekleme kısmı
+                if ($(this).parent().children().length > 1) {
+                    $(this).html($(this).html() + '<i class="fa fa-angle-down"></i>');
+                }
+            });
+
+            $(".fancyImageGallery").fancybox();
+            $(".fancyimg").fancybox();
+
+            $(".dikeyMenu > li > .has-sub").click(function (e) {
+                e.preventDefault();
+
+                var index = $(this).index(".dikeyMenu > li > .has-sub");
+
+                $(".sub-menu").not(':eq(' + index + ')').slideUp();
+
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+            $(".dikeyMenu .sub-menu .has-sub").click(function (e) {
+                e.preventDefault();
+
+                $(this).next(".sub-menu").slideToggle();
+            });
+
+            var a = $('.responsive_menu .main_menu > ul > li > a');
+            a.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).next().slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).prev().removeClass('open');
+                } else {
+                    a.next().slideUp();
+                    a.parent().removeClass('open');
+                    a.prev().removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).prev().addClass('open');
+                    $(this).next().slideDown();
+                }
+            });            var abtn = $('.responsive_menu .main_menu > ul > li > ul > li > a');
+            abtn.click(function () {
+
+                if ($(this).parent().hasClass('open')) {
+                    $(this).parent().find('ul').slideUp();
+                    $(this).parent().removeClass('open');
+                    $(this).removeClass('open');
+                } else {
+                    abtn.next().slideUp();
+                    abtn.parent().removeClass('open');
+                    abtn.removeClass('open');
+                    $(this).parent().addClass('open');
+                    $(this).addClass('open');
+                    $(this).parent().find('ul').slideDown();
+                }
+            });
+
+        });
+
+        function OpenPopUp(url, width, height) {
+
+            $.fancybox({
+                'width': width,
+                'height': height,
+                'autoScale': false,
+                'transitionIn': 'none',
+                'transitionOut': 'none',
+                'type': 'iframe',
+                'href': url,
+                success: function (dd) {
+                    parent.$.fancybox.close();
+
+                }
+            });
+
+        }
+
+    </script>
+
+
+    <div class="responsive-navigation visible-sm visible-xs">
+            <a href="#" class="menu-toggle-btn"><i class="fa fa-bars"></i></a>
+            <div class="responsive_menu">
+
+<ul class="main_menu">
+    <ul id="menu">
+        <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/8389">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/misyon-vizyon/2737">Misyon-Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/8390">Temel Değerler </a></li></ul></li><li><a class="" target="_self" href="/tr/page/idari-birim-yonetimi/8395">İdari Birim Yönetimi </a></li><li><a class="has-sub" target="_self" href="#">Organizasyon Şeması </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/birim-bazli-organizasyon-semasi">Birim Bazlı Teşkilat Şeması </a></li><li><a class="" target="_self" href="/tr/personel-bazli-organizasyon-semasi">Personel Bazlı Teşkilat Şeması </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İdari Birim Komisyonları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8491">Birim Kalite Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/diger-komisyonlar/9592">Diğer Komisyonlar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/altyapi-ve-fiziki-imkanlar/8501">Altyapı ve Fiziki İmkanlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Personel </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/idaripersonel">İdari Personel </a></li><li><a class="" target="_self" href="/tr/page/personel-dokumanlari/8502">Personel Dokümanları </a></li><li><a class="" target="_self" href="/tr/page/gorev-tanimlari/8506">Görev Tanımları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Hizmetler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/verilen-hizmetler/8513">Verilen Hizmetler </a></li><li><a class="" target="_self" href="/tr/page/kullanici-yardimi/8514">Kullanıcı Yardımı </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="http://kalite.giresun.edu.tr/tr/page/politikalar/7136">Kalite Politikası </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8557">Birim Kalite Komisyonu </a></li><li><a class="has-sub" target="_self" href="#">Birim Kalite Dokümanları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kalite-hedef-listesi/9626">Birim Kalite Hedef Listesi </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-eylem-plani/9625">Birim Kalite Eylem Planı </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-toplanti-tutanaklari/9624">Birim Kalite Toplantı Tutanakları </a></li></ul></li><li><a class="" target="_self" href="/tr/page/birim-puko-formlari/8536">Birim Pukö Formları </a></li><li><a class="" target="_self" href="/tr/page/paydaslar/3104">Paydaş Listesi </a></li><li><a class="has-sub" target="_blank" href="#">İç Kontrol </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kamu-ic-kontrol-standartlarina-uyum-eylem-plani-tablosu/9627">Birim Kamu İç Kontrol Standartlarına Uyum Eylem Planı Tablosu </a></li><li><a class="" target="_self" href="/tr/page/etik-ilkeler/8537">Etik İlkeler </a></li><li><a class="" target="_blank" href="/tr/page/hizmet-standartlari/2802">Hizmet Envanteri  </a></li><li><a class="" target="_self" href="/tr/page/hizmet-standartlari/9587">Hizmet Standartları </a></li><li><a class="" target="_blank" href="/tr/page/is-akis-semasi/2799">Hassas Görevler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Raporlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-oz-degerlendirme-raporlari/8545">Birim Öz Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/faaliyet-raporlari/2741">Faaliyet Raporları </a></li></ul></li><li><a class="" target="_self" href="/tr/page/is-akis-surecleri/2800">İş Akış Süreçleri </a></li><li><a class="" target="_self" href="/tr/page/yonergeler/2747">Mevzuat </a></li><li><a class="" target="_self" href="/tr/page/dokumanlar/2739">Dokümanlar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/sikca-sorulan-sorular/8554">S.S.S </a></li><li><a class="has-sub" target="_blank" href="#">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/iletisim-bigileri/9586">İletişim Bilgileri </a></li><li><a class="" target="_self" href="/tr/page/birim-iletisim-bilgileri/8570">Birim İletişim Bilgileri </a></li><li><a class="" target="_self" href="/tr/page/telefon-rehberi/8555">Telefon Rehberi </a></li><li><a class="" target="_self" href="/tr/contact">Konum ve Ulaşım </a></li><li><a class="" target="_self" href="/tr/contact">İletişim Formu (Bize Ulaşın) </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Öğrenci </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kayit-islemleri/8581">Kayıt İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/not-islemleri/8582">Not İşlemleri </a></li><li><a class="has-sub" target="_self" href="#">Akademik Takvim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/2026-2027-akademik-takvimler/9653">2026-2027 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2025-2026-akademik-takvimler/6258">2025-2026 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-akademik-takvimler/5202">2024-2025 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2023-2024-akademik-takvimi/4159">2023-2024 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2022-2023-akademik-takvimi/4121">2022-2023 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2021-2022-akademik-takvimi/3094">2021-2022 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2020-2021-akademik-takvimi/2997">2020-2021 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2019-2020-bahar-yariyilipandemi-sonrasi-akademik-takvimler/2990">2019-2020 Bahar Yarıyılı Pandemi Sonrası Akademik Takvimler </a></li><li><a class="" target="_blank" href="/tr/page/2019-2020-akademik-takvimi/2863">2019-2020 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2018-akademik-takvimler/2742">2018-2019 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2017-akademik-takvimi/2744">2017-2018 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2016-2017-akademik-takvimi/2779">2016-2017 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2015-2016-akademik-takvimi/2780">2015-2016 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2014-2015-akademik-takvimi/2781">2014-2015 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2013-2014-akademik-takvimi/2782">2013-2014 Akademik Takvimi </a></li></ul></li><li><a class="has-sub" target="_blank" href="#">Başvurular </a><ul class="sub-menu"><li><a class="has-sub" target="_blank" href="/tr/page/yatay-gecis/2864">Yatay Geçiş </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/yatay-gecis/2864">Kurum İçi Yatay Geçiş </a></li><li><a class="" target="_blank" href="/tr/page/kurumlararasi-yatay-gecis/2866">Kurumlararası Yatay Geçiş </a></li><li><a class="" target="_self" href="/tr/page/yurt-disi-yatay-gecis/2867">Yurt  Dışı Yatay Geçiş </a></li><li><a class="" target="_blank" href="/tr/page/merkezi-yerlestirme-puani-ile-yatay-gecis/2865">Merkezi Yerleştirme Puanı İle Yatay Geçiş </a></li></ul></li><li><a class="has-sub" target="_blank" href="/tr/page/2025-2026-cift-ana-dal-ve-yan-dal-basvuru-ve-degerlendirme-takvimi/9582">Çift Anadal-Yandal </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/cift-ana-dal/9583">Çift Ana Dal </a></li><li><a class="" target="_self" href="/tr/page/yan-dal/9584">Yan Dal </a></li></ul></li><li><a class="" target="_blank" href="/tr/page/ozel-ogrenci/9610">Özel Öğrenci </a></li><li><a class="" target="_blank" href="https://fso.giresun.edu.tr/">Uluslararası Öğrenciler </a></li><li><a class="" target="_blank" href="/tr/page/ozel-yetenek/9585">Özel Yetenek </a></li></ul></li><li><a class="" target="_self" href="/tr/page/diploma/3011">Diploma </a></li><li><a class="" target="_blank" href="/tr/page/aday-ogrenci/3100">Aday Öğrenci </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-formlar/8556">Öğrenci Formlar </a></li><li><a class="has-sub" target="_blank" href="#">İstatistik </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/2026-ogrenci-sayisi/8271">2026 Öğrenci Sayısı </a></li><li><a class="" target="_self" href="/tr/page/2025-ogrenci-sayisi/5220">2025 Öğrenci Sayısı </a></li><li><a class="" target="_self" href="/tr/page/2024-ogrenci-sayisi/4170">2024 Öğrenci Sayımız </a></li><li><a class="" target="_self" href="/tr/page/2023-ogrenci-sayisi/4147">2023 Öğrenci Sayımız </a></li><li><a class="" target="_self" href="/tr/page/2022-ogrenci-sayisi/3106">2022 Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2021-ogrenci-sayisi/3024">2021 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2020-ogrenci-sayisi/2958">2020 Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2019-aktif-ogrenci-sayisi/2777">2019  Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2018-aktif-ogrenci-sayisi/2783">2018 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2017-aktif-ogrenci-sayisi/2786">2017 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2016-aktif-ogrenci-sayisi/2787">2016 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2015-aktif-ogrenci-sayisi/2788">2015 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2014-aktif-ogrenci-sayisi/2789">2014 Öğrenci sayımız </a></li></ul></li></ul></li>
+    </ul>
+</ul>
+
+
+            </div>
+        </div>
+    <header class="site-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10 header-logo">
+                    <div class="logo">
+                        <a href="/tr">
+                            <img style="height: 120px; padding: 10px 0px; float:left;" class="img-responsive" src="/Files/Images/_daire-baskanliklari_ogren-6889.png" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-md-2 header-right pull-right">
+                    <ul class="small-links">
+                                <li><a href="javascript:changeLang('tr');"><b>TR</b></a></li>
+
+                    </ul>
+                    <ul class="small-links">
+                        <li><a target="_blank" href="http://www.giresun.edu.tr">&#220;niversite Ana Sayfa</a></li>
+                        
+                    </ul>
+                    <select style="color: #000; display: none" id="dil">
+                                <option value="tr">TR</option>
+
+                    </select>
+
+                    <div class="" style="margin-top:47px;margin-right:2px;">
+                        <form action="/tr/search" method="get" class="search-form">
+                            <div class="form-group has-feedback" style="margin-bottom:1px;">
+                                <label for="s" class="sr-only">Ara</label>
+                                <input type="text" class="form-control" name="s" id="s" placeholder="Ara" autocomplete="off">
+                                <span class="fa fa-search form-control-feedback"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="nav-bar-main" role="navigation">
+                <div class="container">
+                    <div class="navbar yamm main-navigation clearfix visible-md visible-lg">
+                        <div class="navbar-header center">
+                            <a style="display: block; padding: 9px 20px;" href="/"><i class="fa fa-home"></i></a>
+                        </div>
+                        <div id="navbar-collapse-grid" class="navbar-collapse collapse">
+
+<ul id="menu" class="nav navbar-nav sf-menu">
+    <li><a class="has-sub" target="_self" href="#">Hakkımızda </a><ul class="sub-menu"><li><a class="has-sub" target="_self" href="#">Genel Bilgiler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/tarihce/8389">Tarihçe </a></li><li><a class="" target="_self" href="/tr/page/misyon-vizyon/2737">Misyon-Vizyon </a></li><li><a class="" target="_self" href="/tr/page/temel-degerler/8390">Temel Değerler </a></li></ul></li><li><a class="" target="_self" href="/tr/page/idari-birim-yonetimi/8395">İdari Birim Yönetimi </a></li><li><a class="has-sub" target="_self" href="#">Organizasyon Şeması </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/birim-bazli-organizasyon-semasi">Birim Bazlı Teşkilat Şeması </a></li><li><a class="" target="_self" href="/tr/personel-bazli-organizasyon-semasi">Personel Bazlı Teşkilat Şeması </a></li></ul></li><li><a class="has-sub" target="_self" href="#">İdari Birim Komisyonları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8491">Birim Kalite Komisyonu </a></li><li><a class="" target="_self" href="/tr/page/diger-komisyonlar/9592">Diğer Komisyonlar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/altyapi-ve-fiziki-imkanlar/8501">Altyapı ve Fiziki İmkanlar </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Personel </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/idaripersonel">İdari Personel </a></li><li><a class="" target="_self" href="/tr/page/personel-dokumanlari/8502">Personel Dokümanları </a></li><li><a class="" target="_self" href="/tr/page/gorev-tanimlari/8506">Görev Tanımları </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Hizmetler </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/verilen-hizmetler/8513">Verilen Hizmetler </a></li><li><a class="" target="_self" href="/tr/page/kullanici-yardimi/8514">Kullanıcı Yardımı </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Kalite </a><ul class="sub-menu"><li><a class="" target="_self" href="http://kalite.giresun.edu.tr/tr/page/politikalar/7136">Kalite Politikası </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-komisyonu/8557">Birim Kalite Komisyonu </a></li><li><a class="has-sub" target="_self" href="#">Birim Kalite Dokümanları </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kalite-hedef-listesi/9626">Birim Kalite Hedef Listesi </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-eylem-plani/9625">Birim Kalite Eylem Planı </a></li><li><a class="" target="_self" href="/tr/page/birim-kalite-toplanti-tutanaklari/9624">Birim Kalite Toplantı Tutanakları </a></li></ul></li><li><a class="" target="_self" href="/tr/page/birim-puko-formlari/8536">Birim Pukö Formları </a></li><li><a class="" target="_self" href="/tr/page/paydaslar/3104">Paydaş Listesi </a></li><li><a class="has-sub" target="_blank" href="#">İç Kontrol </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-kamu-ic-kontrol-standartlarina-uyum-eylem-plani-tablosu/9627">Birim Kamu İç Kontrol Standartlarına Uyum Eylem Planı Tablosu </a></li><li><a class="" target="_self" href="/tr/page/etik-ilkeler/8537">Etik İlkeler </a></li><li><a class="" target="_blank" href="/tr/page/hizmet-standartlari/2802">Hizmet Envanteri  </a></li><li><a class="" target="_self" href="/tr/page/hizmet-standartlari/9587">Hizmet Standartları </a></li><li><a class="" target="_blank" href="/tr/page/is-akis-semasi/2799">Hassas Görevler </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Raporlar </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/birim-oz-degerlendirme-raporlari/8545">Birim Öz Değerlendirme Raporları </a></li><li><a class="" target="_self" href="/tr/page/faaliyet-raporlari/2741">Faaliyet Raporları </a></li></ul></li><li><a class="" target="_self" href="/tr/page/is-akis-surecleri/2800">İş Akış Süreçleri </a></li><li><a class="" target="_self" href="/tr/page/yonergeler/2747">Mevzuat </a></li><li><a class="" target="_self" href="/tr/page/dokumanlar/2739">Dokümanlar </a></li></ul></li><li><a class="" target="_self" href="/tr/page/sikca-sorulan-sorular/8554">S.S.S </a></li><li><a class="has-sub" target="_blank" href="#">İletişim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/iletisim-bigileri/9586">İletişim Bilgileri </a></li><li><a class="" target="_self" href="/tr/page/birim-iletisim-bilgileri/8570">Birim İletişim Bilgileri </a></li><li><a class="" target="_self" href="/tr/page/telefon-rehberi/8555">Telefon Rehberi </a></li><li><a class="" target="_self" href="/tr/contact">Konum ve Ulaşım </a></li><li><a class="" target="_self" href="/tr/contact">İletişim Formu (Bize Ulaşın) </a></li></ul></li><li><a class="has-sub" target="_self" href="#">Öğrenci </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/kayit-islemleri/8581">Kayıt İşlemleri </a></li><li><a class="" target="_self" href="/tr/page/not-islemleri/8582">Not İşlemleri </a></li><li><a class="has-sub" target="_self" href="#">Akademik Takvim </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/2026-2027-akademik-takvimler/9653">2026-2027 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2025-2026-akademik-takvimler/6258">2025-2026 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2024-2025-akademik-takvimler/5202">2024-2025 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2023-2024-akademik-takvimi/4159">2023-2024 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2022-2023-akademik-takvimi/4121">2022-2023 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2021-2022-akademik-takvimi/3094">2021-2022 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2020-2021-akademik-takvimi/2997">2020-2021 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2019-2020-bahar-yariyilipandemi-sonrasi-akademik-takvimler/2990">2019-2020 Bahar Yarıyılı Pandemi Sonrası Akademik Takvimler </a></li><li><a class="" target="_blank" href="/tr/page/2019-2020-akademik-takvimi/2863">2019-2020 Akademik Takvimi </a></li><li><a class="" target="_self" href="/tr/page/2018-akademik-takvimler/2742">2018-2019 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2017-akademik-takvimi/2744">2017-2018 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2016-2017-akademik-takvimi/2779">2016-2017 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2015-2016-akademik-takvimi/2780">2015-2016 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2014-2015-akademik-takvimi/2781">2014-2015 Akademik Takvimi </a></li><li><a class="" target="_blank" href="/tr/page/2013-2014-akademik-takvimi/2782">2013-2014 Akademik Takvimi </a></li></ul></li><li><a class="has-sub" target="_blank" href="#">Başvurular </a><ul class="sub-menu"><li><a class="has-sub" target="_blank" href="/tr/page/yatay-gecis/2864">Yatay Geçiş </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/yatay-gecis/2864">Kurum İçi Yatay Geçiş </a></li><li><a class="" target="_blank" href="/tr/page/kurumlararasi-yatay-gecis/2866">Kurumlararası Yatay Geçiş </a></li><li><a class="" target="_self" href="/tr/page/yurt-disi-yatay-gecis/2867">Yurt  Dışı Yatay Geçiş </a></li><li><a class="" target="_blank" href="/tr/page/merkezi-yerlestirme-puani-ile-yatay-gecis/2865">Merkezi Yerleştirme Puanı İle Yatay Geçiş </a></li></ul></li><li><a class="has-sub" target="_blank" href="/tr/page/2025-2026-cift-ana-dal-ve-yan-dal-basvuru-ve-degerlendirme-takvimi/9582">Çift Anadal-Yandal </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/cift-ana-dal/9583">Çift Ana Dal </a></li><li><a class="" target="_self" href="/tr/page/yan-dal/9584">Yan Dal </a></li></ul></li><li><a class="" target="_blank" href="/tr/page/ozel-ogrenci/9610">Özel Öğrenci </a></li><li><a class="" target="_blank" href="https://fso.giresun.edu.tr/">Uluslararası Öğrenciler </a></li><li><a class="" target="_blank" href="/tr/page/ozel-yetenek/9585">Özel Yetenek </a></li></ul></li><li><a class="" target="_self" href="/tr/page/diploma/3011">Diploma </a></li><li><a class="" target="_blank" href="/tr/page/aday-ogrenci/3100">Aday Öğrenci </a></li><li><a class="" target="_self" href="/tr/page/ogrenci-formlar/8556">Öğrenci Formlar </a></li><li><a class="has-sub" target="_blank" href="#">İstatistik </a><ul class="sub-menu"><li><a class="" target="_self" href="/tr/page/2026-ogrenci-sayisi/8271">2026 Öğrenci Sayısı </a></li><li><a class="" target="_self" href="/tr/page/2025-ogrenci-sayisi/5220">2025 Öğrenci Sayısı </a></li><li><a class="" target="_self" href="/tr/page/2024-ogrenci-sayisi/4170">2024 Öğrenci Sayımız </a></li><li><a class="" target="_self" href="/tr/page/2023-ogrenci-sayisi/4147">2023 Öğrenci Sayımız </a></li><li><a class="" target="_self" href="/tr/page/2022-ogrenci-sayisi/3106">2022 Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2021-ogrenci-sayisi/3024">2021 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2020-ogrenci-sayisi/2958">2020 Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2019-aktif-ogrenci-sayisi/2777">2019  Öğrenci Sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2018-aktif-ogrenci-sayisi/2783">2018 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2017-aktif-ogrenci-sayisi/2786">2017 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2016-aktif-ogrenci-sayisi/2787">2016 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2015-aktif-ogrenci-sayisi/2788">2015 Öğrenci sayımız </a></li><li><a class="" target="_blank" href="/tr/page/2014-aktif-ogrenci-sayisi/2789">2014 Öğrenci sayımız </a></li></ul></li></ul></li>
+</ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+    </header>
+
+
+
+    <div style="margin-bottom:150px;">
+
+        <div class="container">
+            <div class="row">
+
+                    <div class="col-md-12">
+                        
+
+
+
+
+
+
+
+<div class="row">
+<div id="sol_menu" class="col-md-3">
+
+<div class="widget-main">
+    <div id="sol_menu1" class="widget-main-title">
+        <a target="_self" href="#">
+            <h4 class="widget-title">&#214;ğrenci</h4>
+        </a>
+    </div>
+    <div class="widget-inner">
+        <div class="blog-categories">
+            <div class="row">
+                <ul id="sol_menu2" class="col-md-12">
+                    
+                        <li><a target="_self" href="/tr/page/cift-ana-dal-yan-dal/5208">&#199;ift Ana Dal- Yan Dal</a></li>
+                        <li><a target="_self" href="/tr/page/ogrenci-formlar/8556">&#214;ğrenci Formlar</a></li>
+                        <li><a target="_self" href="/tr/page/kayit-islemleri/8581">Kayıt İşlemleri</a></li>
+                        <li><a target="_self" href="/tr/page/not-islemleri/8582">Not İşlemleri</a></li>
+                        <li><a target="_self" href="/tr/page/2025-2026-cift-ana-dal-ve-yan-dal-basvuru-ve-degerlendirme-takvimi/9582">2025-2026 &#199;ift Ana Dal ve Yan Dal Başvuru ve Değerlendirme Takvimi</a></li>
+                        <li><a target="_self" href="/tr/page/cift-ana-dal/9583">&#199;ift Ana Dal</a></li>
+                        <li><a target="_self" href="/tr/page/yan-dal/9584">Yan Dal</a></li>
+                        <li><a target="_self" href="/tr/page/ozel-yetenek/9585">&#214;zel Yetenek</a></li>
+                        <li><a target="_self" href="/tr/page/ozel-ogrenci/9610">&#214;zel &#214;ğrenci</a></li>
+                        <li><a target="_self" href="/tr/page/2026-2027-akademik-takvimler/9653">2026-2027 AKADEMİK TAKVİMLER</a></li>
+                    
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div class="col-md-9">
+            <div class="widget-main">
+                <div class="widget-main-title"><h4 class="widget-title text-center" id="sayfa_ismi4">2026-2027 AKADEMİK TAKVİMLER</h4></div>
+            </div>
+            
+
+            <div style="text-align: justify;" class="blog-post-inner">
+                <span style="font-size:14px"><span style="font-family:Times New Roman,Times,serif"><a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Ön Lisans ve Lisans Akademik Takvimi.pdf">2026-2027 &Ouml;n Lisans ve Lisans&nbsp; Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Lisanüstü Akademik Takvimi Son Hali.pdf">2026-2027 Lisans&uuml;st&uuml; Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Tıp Fakültesi Akademik Takvim.pdf">2026-2027 Tıp Fak&uuml;ltesi Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Diş Hekimliği Fakültesi Akademik Takvim.pdf">2026-2027 Diş Hekimliği Fak&uuml;ltesi&nbsp; Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 İlahiyat Fakültesi Zorunlu Arapça Hazırlık Akademik Takvim.pdf">2026-2027 İlahiyat Fak&uuml;ltesi (Arap&ccedil;a Hazırlık) Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Yabancı Diller YO Akademik Takvimi.pdf">2026-2027 Yabancı Diller Y&uuml;ksekokulu (İngilizce Hazırlık)&nbsp;Akademik Takvimi</a><br />
+<a href="/Files/ckFiles/oidb-giresun-edu-tr/akademik takvimler/2026-2027 AKADEMİK TAKVİMLER/2026-2027 Devlet Konservatuvarı Akademik Takvimi.pdf">2026-2027 Devlet Konservatuvarı&nbsp;Akademik Takvimi</a></span></span><br />
+&nbsp;
+
+            </div>
+
+            
+            
+            
+            
+<style type="text/css">
+    #pdocs a {
+        color: #333;
+    }
+
+    #pdocs ul {
+        padding: 0px;
+        margin: 0px;
+    }
+
+    #pdocs ul, #pdocs li {
+        list-style-type: none;
+    }
+
+    #pdocs table {
+        font-size: 12px;
+    }
+
+        #pdocs table tr td, table tr th {
+            border: 1px solid #ccc;
+            padding: 2px;
+        }
+
+            #pdocs table tr td a {
+                display: block !important;
+                margin: 5px 0px;
+            }
+
+        #pdocs table tr :hover {
+            background-color: #ccc;
+        }
+</style>
+
+
+<div class="blog-post-inner">
+    <div style="background-color:#FFF" class="row">
+        <div id="pdocs">
+
+            <ul></ul>
+
+        </div>
+    </div>
+</div>
+
+
+
+        </div>
+
+
+
+    </div>
+
+
+                    </div>
+
+                <div style="clear:both;"></div>
+
+            </div>
+        </div>
+
+
+    </div>
+    
+    <div style="clear:both;"></div>
+
+    <footer id="footer" class="site-footer">
+        <div class="container" >
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                    <h4 class="footer-widget-title">İletişim</h4>
+                    <p>&#214;ğrenci Danışma Hattı : (0454) 310 18 88-
+
+G&#252;re Mah. Prof.Dr. Ahmet Taner Kışlalı Cad. No: 48   
+                                                                         Merkez/GİRESUN</p>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-4" style="background-size: 100%; background-image: url(/_Resources/images/giresun-rektorluk.png); background-position: center; background-repeat: no-repeat; height: 180px;">
+                </div>
+                
+                <div class="col-xs-12 col-sm-12 col-md-4 text-right">
+                    <p>
+                            <strong>Tel : </strong>
+0 454 310 18 88<br />
+
+                            <strong>Faks : </strong>
+0 454 310 11 19<br />
+
+                            <strong>E-Posta : </strong>
+oidb@giresun.edu.tr                    </p>
+
+                    <ul class="footer-media-icons pull-right">
+                                                                                                                                                                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center">
+            <div class="bottom-footer">
+                <p class="small-text">© 2026 Bilgi İşlem Daire Başkanlığı</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('body').css('margin-bottom', Math.ceil($('.site-footer').height() + 66) + 'px');
+
+            $("#search-link").click(function (e) {
+                e.preventDefault();
+                $("#search-container").slideToggle();
+            });
+
+        });
+
+        function showLoading() {
+            var html =
+                "<div style=\"width: auto; height: auto; display: block;\" class=\"fancybox-overlay fancybox-overlay-fixed\"> </div>" +
+                    "<div id=\"fancybox-loading\"> " +
+                    "<div></div>" +
+                    "</div>";
+
+            var htmlContent = "<div id=\"divBekle\">" + html + "</div>";
+            $("body").append(htmlContent);
+        }
+
+        function hideLoading() {
+            $("#divBekle").remove();
+        }
+
+        function changeLang(shortTitle) {
+
+            var url = window.location.href;
+
+            if (url.indexOf("/tr/") == -1) {
+                window.location.href = "/" + shortTitle;
+            } else {
+                var newUrl = url.replace("/tr/", "/" + shortTitle + "/");
+                window.location.href = newUrl;
+            }
+        }
+
+    </script>
+    <script src="/_Resources/js/custom.js"></script>
+    <script src="/_Resources/js/plugins.js"></script>
+
+
+
+    
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("a.collapsed").click(function (e) {
+                e.preventDefault();
+
+                var id = $(this).attr("href");
+                $(".panel-collapse").hide("normal");
+                $(id).show("normal");
+            });
+        });
+    </script>
+
+
+</body>
+</html>
