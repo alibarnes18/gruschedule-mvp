@@ -10,6 +10,8 @@ import { parseAcademicCalendar } from "./parse-academic-calendar.ts";
 import { parseMenu } from "./parse-menu.ts";
 import { academicCalendarSources, classScheduleSources, examSources, menuSources } from "./adapters/giresun.ts";
 import { sha256Hex } from "./hash.ts";
+import { notifyDepartmentSubscribers } from "./notify-changes.ts";
+import { EXAM_TYPE_LABELS } from "./tr-format.ts";
 
 export type WriteResult =
   | { ok: true; sourceDocumentId: string; parseStatus: string; entriesWritten: number; flaggedCount: number }
@@ -199,6 +201,12 @@ export async function writeExamSchedule(
   });
   if ("error" in sourceDocument) return err(sourceDocument.error);
 
+  const { data: previousRows } = await supabase
+    .from("exam_events")
+    .select("course_name, exam_date, exam_time, location")
+    .eq("department_id", department.id)
+    .eq("exam_type", source.examType);
+
   const { error: deleteError } = await supabase
     .from("exam_events")
     .delete()
@@ -219,7 +227,29 @@ export async function writeExamSchedule(
   const { error: insertError } = await supabase.from("exam_events").insert(rows);
   if (insertError) return err(insertError.message);
 
+  if (rows.length > 0 && examRowsChanged(previousRows ?? [], rows)) {
+    await notifyExamScheduleChange(supabase, department.id, source.examType);
+  }
+
   return { ok: true, sourceDocumentId: sourceDocument.id, parseStatus, entriesWritten: rows.length, flaggedCount };
+}
+
+type ExamRowFields = { course_name: string; exam_date: string; exam_time: string | null; location: string | null };
+
+function examRowsChanged(previous: ExamRowFields[], next: ExamRowFields[]): boolean {
+  const fingerprint = (rows: ExamRowFields[]) =>
+    rows
+      .map((r) => `${r.course_name}|${r.exam_date}|${r.exam_time ?? ""}|${r.location ?? ""}`)
+      .sort()
+      .join("\n");
+  return fingerprint(previous) !== fingerprint(next);
+}
+
+async function notifyExamScheduleChange(supabase: SupabaseClient, departmentId: string, examType: string) {
+  const token = Deno.env.get("TELEGRAM_BOT_TOKEN");
+  if (!token) return; // Telegram bot not configured — silently skip
+  const label = EXAM_TYPE_LABELS[examType] ?? examType;
+  await notifyDepartmentSubscribers(supabase, token, departmentId, `${label} sınav takviminiz güncellendi. /sinavlarim ile kontrol edin.`);
 }
 
 // University-wide: only one academic calendar is ever "current", so a

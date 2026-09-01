@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gruschedule
 
-## Getting Started
+Giresun Üniversitesi'nin PDF olarak yayınladığı akademik takvim, sınav
+takvimi, ders programı ve yemekhane menüsü verilerini otomatik olarak çekip
+yapılandırılmış hâle getirip; fakülte/bölüm/şube bazlı filtrelenebilir bir
+web arayüzünde ve (yakında) bir Telegram bot üzerinden öğrencilere sunar.
 
-First, run the development server:
+Bu bilgiler şu an sadece PDF içinde, dağınık, güncellendiğinde kimse haberdar
+olmuyor. Gruschedule bunu tek, aranabilir, bildirim gönderen bir sisteme
+çeviriyor.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+**Kapsam (v1):** Tek üniversite (Giresun Üniversitesi). Mimari, ileride başka
+üniversiteler eklenebilecek şekilde (adaptör deseni) tasarlandı, ama v1
+sadece bir üniversiteyi hedefliyor.
+
+## Mimari
+
+```
+Üniversite web sitesi (PDF kaynakları)
+         │  periyodik kontrol (pg_cron → Edge Function)
+         ▼
+check-for-updates  ──(hash değiştiyse)──▶  parse-pdf
+         │                                     │
+         │                                     ▼
+         │                          Supabase Postgres (ana veri deposu)
+         │                                     │
+         └──────────────▶ notify-changes ◀─────┘
+                                (Telegram bildirimi, yakında)
+                                     │
+                        Next.js Frontend (bu repo, App Router)
+                                     │
+                              Telegram Bot (yakında)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Supabase Edge Functions** (`supabase/functions/`): PDF indirme,
+  değişiklik tespiti (içerik hash'i), parse etme ve Postgres'e yazma.
+- **Supabase Postgres**: fakülte/bölüm/şube, ders programı, sınav takvimi,
+  akademik takvim ve yemekhane menüsü tabloları. Şema `supabase/migrations/`
+  altında.
+- **Next.js frontend** (`src/app/`): Server Components ile Supabase'den
+  doğrudan veri çeken sayfalar — Dashboard, ders programı, sınav takvimi,
+  akademik takvim, yemekhane menüsü.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Detaylı teknik spesifikasyon için [`gruschedule.md`](./gruschedule.md)
+dosyasına bakabilirsiniz.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Kurulum
 
-## Learn More
+Gereksinimler: Node.js 20+, bir Supabase projesi (veya
+[Supabase CLI](https://supabase.com/docs/guides/local-development) ile
+local development stack).
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm install
+cp .env.local.example .env.local
+# .env.local içine Supabase proje ayarlarından
+# (Project Settings > API) URL ve anon key'i doldurun
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Veritabanı şemasını kurmak için (yeni bir Supabase projesinde):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+supabase link --project-ref <proje-ref>
+supabase db push        # supabase/migrations/ altındaki şemayı uygular
+psql "$DATABASE_URL" -f supabase/seed.sql   # örnek fakülte/bölüm verisi
+```
 
-## Deploy on Vercel
+Edge Functions'ı deploy etmek için:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+supabase functions deploy parse-pdf
+supabase functions deploy check-for-updates
+supabase functions deploy telegram-webhook
+supabase functions deploy notify-changes
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Telegram bot kurulumu
+
+1. [@BotFather](https://t.me/BotFather)'dan yeni bir bot oluşturup token alın.
+2. Token'ı Edge Function secret olarak ekleyin:
+   `supabase secrets set TELEGRAM_BOT_TOKEN=<token>`
+3. Webhook'u `telegram-webhook` fonksiyonunuzun deploy edilmiş URL'sine
+   yönlendirin:
+   `curl "https://api.telegram.org/bot<token>/setWebhook?url=<function-url>"`
+
+Bot komutları: `/start`, `/bolum_sec`, `/sinavlarim`, `/menu`, `/takvim`,
+`/simdi`, `/programim` — bkz. `gruschedule.md` bölüm 6.
+
+## Proje yapısı
+
+```
+src/app/            Next.js sayfaları (App Router)
+src/components/      Paylaşılan React bileşenleri
+src/lib/             Supabase client'ları, veri çekme, ICS üretimi, yardımcılar
+supabase/migrations/ Veritabanı şeması, RLS politikaları, cron kurulumu
+supabase/functions/  PDF indirme/parse etme/yazma Edge Functions
+fixtures/            Parser testleri için örnek PDF/HTML dosyaları
+```
+
+## Yeni bir üniversite eklemek
+
+Mimari, `supabase/functions/_shared/adapters/` altında üniversiteye özel bir
+adaptör dosyası (bugün için `giresun.ts`) üzerinden çalışacak şekilde
+tasarlandı: PDF kaynaklarının nerede olduğu, hangi grid/regex formatının
+kullanılacağı gibi üniversiteye özel bilgiler bu dosyada toplanıyor. Yeni bir
+üniversite eklemek isterseniz:
+
+1. `supabase/functions/_shared/adapters/` altına yeni bir adaptör dosyası
+   ekleyin (mevcut `giresun.ts` iyi bir başlangıç noktasıdır).
+2. Üniversitenin PDF formatı farklıysa (satır bazlı tablo mı, grid/matris mi)
+   ilgili parser'ı (`parse-*.ts`) genelleştirin veya yeni bir parser ekleyin.
+3. `source_documents` tablosuna `university_id` kolonu ekleyip mevcut
+   tabloları buna göre migrate edin (bkz. `gruschedule.md` bölüm 8).
+
+Detaylı katkı süreci için [`CONTRIBUTING.md`](./CONTRIBUTING.md) dosyasına
+bakın.
+
+## Lisans
+
+[Apache License 2.0](./LICENSE).

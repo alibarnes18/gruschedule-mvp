@@ -50,9 +50,18 @@ export function parseMenu(rawItems: TextItem[], config: MenuGridConfig): ParsedM
   const headers = items.filter((i) => DATE_HEADER_RE.test(i.str.trim()));
 
   const bandTopYs = [...new Set(headers.map((h) => h.y))].sort((a, b) => b - a);
+
+  // The last row of the grid has no following band to bound its bottom, so
+  // without a limit it swallows the page's footer (signature block) printed
+  // below it. Bound it by the largest gap seen between this document's own
+  // bands — generous enough to keep a full day's dishes, tight enough to
+  // drop the footer sitting further down the page.
+  const bandGaps = bandTopYs.slice(0, -1).map((y, i) => y - bandTopYs[i + 1]);
+  const lastBandHeight = bandGaps.length > 0 ? Math.max(...bandGaps) : Infinity;
+
   const bands = bandTopYs.map((y, i) => ({
     top: y + 5,
-    bottom: i + 1 < bandTopYs.length ? bandTopYs[i + 1] : -Infinity,
+    bottom: i + 1 < bandTopYs.length ? bandTopYs[i + 1] : y - lastBandHeight,
   }));
 
   const days: ParsedMenuDay[] = [];

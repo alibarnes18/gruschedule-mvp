@@ -45,3 +45,27 @@ Deno.test("assigns each week's Monday-column day correctly", async () => {
   assertExists(day);
   assertEquals(day!.items[0], "Sebze Çorba");
 });
+
+Deno.test("drops the page footer/signature block from the last row of the grid", async () => {
+  const days = await parseFixture();
+  const forbidden = ["Daire Başkanı", "Rabia HAFIZOĞLU", "Şube Müdürü", "Merve DEMİRCİ", "ambalajlı", "kkal’dir"];
+  for (const day of days) {
+    for (const item of day.items) {
+      for (const word of forbidden) {
+        assertEquals(
+          item.includes(word),
+          false,
+          `expected ${day.date} not to include footer text, got: ${item}`,
+        );
+      }
+    }
+  }
+  const lastMonday = days.find((d) => d.date === "2026-09-28");
+  assertExists(lastMonday);
+  assertEquals(lastMonday!.items, [
+    "Süzme Mercimek Çorba",
+    "Tas Kebabı",
+    "Şehriyeli Pirinç Pilavı",
+    "Yoğurt",
+  ]);
+});

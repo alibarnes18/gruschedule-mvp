@@ -1,3 +1,5 @@
+import type { IcsEvent } from "@/lib/ics";
+
 export const DAY_NAMES: Record<number, string> = {
   1: "Pazartesi",
   2: "Salı",
@@ -63,4 +65,54 @@ export function addDays(date: Date, days: number): Date {
   const result = new Date(date);
   result.setDate(result.getDate() + days);
   return result;
+}
+
+const DEFAULT_EXAM_DURATION_MINUTES = 90;
+
+export function examToIcsEvent(
+  exam: { id: string; course_name: string; exam_type: string; exam_date: string; exam_time: string | null; location: string | null },
+  departmentName?: string,
+): IcsEvent {
+  const summary = `${EXAM_TYPE_LABELS[exam.exam_type] ?? exam.exam_type}: ${exam.course_name}`;
+  const description = departmentName ? `Bölüm: ${departmentName}` : undefined;
+
+  if (!exam.exam_time) {
+    return {
+      uid: `exam-${exam.id}@gruschedule`,
+      summary,
+      description,
+      location: exam.location ?? undefined,
+      allDay: true,
+      startDate: exam.exam_date,
+    };
+  }
+
+  const start = new Date(`${exam.exam_date}T${exam.exam_time}`);
+  const end = new Date(start.getTime() + DEFAULT_EXAM_DURATION_MINUTES * 60_000);
+  return {
+    uid: `exam-${exam.id}@gruschedule`,
+    summary,
+    description,
+    location: exam.location ?? undefined,
+    allDay: false,
+    start,
+    end,
+  };
+}
+
+export function calendarEventToIcsEvent(event: {
+  id: string;
+  title: string;
+  start_date: string;
+  end_date: string | null;
+  description: string | null;
+}): IcsEvent {
+  return {
+    uid: `calendar-${event.id}@gruschedule`,
+    summary: event.title,
+    description: event.description ?? undefined,
+    allDay: true,
+    startDate: event.start_date,
+    endDate: event.end_date ?? undefined,
+  };
 }

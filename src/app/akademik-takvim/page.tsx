@@ -1,6 +1,7 @@
 import { EmptyState } from "@/components/empty-state";
+import { AddToCalendarButton } from "@/components/add-to-calendar-button";
 import { getAcademicCalendarEvents } from "@/lib/data";
-import { formatDate, toIsoDate } from "@/lib/schedule";
+import { calendarEventToIcsEvent, formatDate, toIsoDate } from "@/lib/schedule";
 
 export const metadata = {
   title: "Akademik Takvim — Gruschedule",
@@ -63,6 +64,12 @@ export default async function AcademicCalendarPage() {
                     {event.description}
                   </p>
                 ) : null}
+                <div className="mt-2">
+                  <AddToCalendarButton
+                    filename={`${event.title}.ics`}
+                    event={calendarEventToIcsEvent(event)}
+                  />
+                </div>
               </li>
             );
           })}
