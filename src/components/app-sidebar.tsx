@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
 import {
   BookOpenCheck,
   CalendarClock,
@@ -19,7 +20,6 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
 const LINKS = [
@@ -53,17 +53,28 @@ export function AppSidebar() {
           <SidebarGroupLabel>Menü</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {LINKS.map((link) => (
-                <SidebarMenuItem key={link.href}>
-                  <SidebarMenuButton
-                    isActive={isActive(pathname, link.href)}
-                    tooltip={link.label}
-                    render={<Link href={link.href} />}
-                  >
-                    <link.icon />
-                    <span>{link.label}</span>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+              {LINKS.map((link, index) => (
+                <motion.li
+                  key={link.href}
+                  data-slot="sidebar-menu-item"
+                  data-sidebar="menu-item"
+                  className="group/menu-item relative"
+                  initial={{ opacity: 0, x: -8 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.2, delay: index * 0.04 }}
+                >
+                  <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                    <SidebarMenuButton
+                      isActive={isActive(pathname, link.href)}
+                      tooltip={link.label}
+                      className="transition-colors duration-150"
+                      render={<Link href={link.href} />}
+                    >
+                      <link.icon />
+                      <span>{link.label}</span>
+                    </SidebarMenuButton>
+                  </motion.div>
+                </motion.li>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
