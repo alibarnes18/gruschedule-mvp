@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { ExamsPageClient } from "@/components/exams-page-client";
 import { getDepartments, getFaculties, getUpcomingExamEvents } from "@/lib/data";
 import { toIsoDate } from "@/lib/schedule";
@@ -22,7 +23,9 @@ export default async function ExamSchedulePage() {
           Yaklaşan vize, final ve bütünleme sınavları.
         </p>
       </div>
-      <ExamsPageClient faculties={faculties} departments={departments} exams={exams} />
+      <Suspense>
+        <ExamsPageClient faculties={faculties} departments={departments} exams={exams} />
+      </Suspense>
     </div>
   );
 }

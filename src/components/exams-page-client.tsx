@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Department, ExamEvent, Faculty } from "@/lib/data";
 import { SectionPicker, type SectionPickerValue } from "@/components/section-picker";
 import { EmptyState } from "@/components/empty-state";
@@ -18,10 +19,32 @@ type Props = {
 };
 
 export function ExamsPageClient({ faculties, departments, exams }: Props) {
-  const [selection, setSelection] = useState<SectionPickerValue | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const selection: SectionPickerValue = useMemo(
+    () => ({
+      facultyId: searchParams.get("fakulte") ?? "",
+      departmentId: searchParams.get("bolum") ?? "",
+      sectionId: null,
+    }),
+    [searchParams],
+  );
+
+  const handleChange = useCallback(
+    (next: SectionPickerValue) => {
+      const params = new URLSearchParams();
+      if (next.facultyId) params.set("fakulte", next.facultyId);
+      if (next.departmentId) params.set("bolum", next.departmentId);
+      const qs = params.toString();
+      router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+    },
+    [pathname, router],
+  );
 
   const filtered = useMemo(() => {
-    if (!selection?.departmentId) return exams;
+    if (!selection.departmentId) return exams;
     return exams.filter((e) => e.department_id === selection.departmentId);
   }, [exams, selection]);
 
@@ -36,7 +59,8 @@ export function ExamsPageClient({ faculties, departments, exams }: Props) {
           <SectionPicker
             faculties={faculties}
             departments={departments}
-            onChange={setSelection}
+            value={selection}
+            onChange={handleChange}
             persist={false}
           />
         </CardContent>

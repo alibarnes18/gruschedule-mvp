@@ -24,6 +24,11 @@ type Props = {
   sections?: Section[];
   onChange: (value: SectionPickerValue) => void;
   persist?: boolean;
+  /** Controlled mode: when provided, the picker reflects this value instead
+   * of managing its own state/localStorage — used when the parent drives
+   * selection from somewhere else (e.g. the URL) and needs it to react to
+   * external changes like browser back/forward. */
+  value?: SectionPickerValue;
 };
 
 export function SectionPicker({
@@ -32,13 +37,19 @@ export function SectionPicker({
   sections,
   onChange,
   persist = true,
+  value: controlledValue,
 }: Props) {
-  const [facultyId, setFacultyId] = useState("");
-  const [departmentId, setDepartmentId] = useState("");
-  const [sectionId, setSectionId] = useState("");
+  const isControlled = controlledValue !== undefined;
+  const [internalFacultyId, setInternalFacultyId] = useState("");
+  const [internalDepartmentId, setInternalDepartmentId] = useState("");
+  const [internalSectionId, setInternalSectionId] = useState("");
+
+  const facultyId = isControlled ? controlledValue.facultyId : internalFacultyId;
+  const departmentId = isControlled ? controlledValue.departmentId : internalDepartmentId;
+  const sectionId = isControlled ? (controlledValue.sectionId ?? "") : internalSectionId;
 
   useEffect(() => {
-    if (!persist) return;
+    if (isControlled || !persist) return;
     const saved = loadSavedSection();
     if (!saved) return;
     if (!faculties.some((f) => f.id === saved.facultyId)) return;
@@ -47,12 +58,12 @@ export function SectionPicker({
     // hydration mismatch between the server-rendered defaults and the
     // client's persisted state.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setFacultyId(saved.facultyId);
+    setInternalFacultyId(saved.facultyId);
     if (departments.some((d) => d.id === saved.departmentId)) {
-      setDepartmentId(saved.departmentId);
+      setInternalDepartmentId(saved.departmentId);
     }
     if (saved.sectionId && sections?.some((s) => s.id === saved.sectionId)) {
-      setSectionId(saved.sectionId);
+      setInternalSectionId(saved.sectionId);
     }
     onChange({
       facultyId: saved.facultyId,
@@ -72,24 +83,23 @@ export function SectionPicker({
 
   function emit(next: SectionPickerValue) {
     onChange(next);
-    if (persist) saveSavedSection(next);
+    if (!isControlled) {
+      setInternalFacultyId(next.facultyId);
+      setInternalDepartmentId(next.departmentId);
+      setInternalSectionId(next.sectionId ?? "");
+      if (persist) saveSavedSection(next);
+    }
   }
 
   function handleFacultyChange(nextFacultyId: string) {
-    setFacultyId(nextFacultyId);
-    setDepartmentId("");
-    setSectionId("");
     emit({ facultyId: nextFacultyId, departmentId: "", sectionId: null });
   }
 
   function handleDepartmentChange(nextDepartmentId: string) {
-    setDepartmentId(nextDepartmentId);
-    setSectionId("");
     emit({ facultyId, departmentId: nextDepartmentId, sectionId: null });
   }
 
   function handleSectionChange(nextSectionId: string) {
-    setSectionId(nextSectionId);
     emit({ facultyId, departmentId, sectionId: nextSectionId || null });
   }
 
