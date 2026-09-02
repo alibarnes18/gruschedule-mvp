@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Nav } from "@/components/nav";
+import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -23,16 +24,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="tr"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <Nav />
-        <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
-          {children}
-        </main>
-        <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-          Gruschedule — Giresun Üniversitesi için gayriresmî bir öğrenci aracı.
-        </footer>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
+          <Nav />
+          <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
+            {children}
+          </main>
+          <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+            Gruschedule — Giresun Üniversitesi için gayriresmî bir öğrenci aracı.
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   );
