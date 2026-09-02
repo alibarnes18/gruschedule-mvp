@@ -100,6 +100,27 @@ export function examToIcsEvent(
   };
 }
 
+// Keyword-based, in priority order: the calendar data has no explicit
+// category field, only a free-text title, so this is a best-effort guess
+// rather than a guarantee — a title that doesn't match any keyword just
+// gets no badge.
+const CALENDAR_CATEGORY_KEYWORDS: { label: string; keywords: string[] }[] = [
+  { label: "Bütünleme", keywords: ["bütünleme"] },
+  { label: "Final Dönemi", keywords: ["final", "yarıyıl sonu sınav"] },
+  { label: "Ara Sınav", keywords: ["ara sınav", "vize"] },
+  { label: "Kayıt Haftası", keywords: ["kayıt yenileme", "kayıt haftası"] },
+  { label: "Tatil", keywords: ["tatil"] },
+  { label: "Sınav", keywords: ["sınav"] },
+];
+
+export function categorizeCalendarEvent(title: string): string | null {
+  const normalized = title.toLocaleLowerCase("tr");
+  const match = CALENDAR_CATEGORY_KEYWORDS.find(({ keywords }) =>
+    keywords.some((k) => normalized.includes(k)),
+  );
+  return match?.label ?? null;
+}
+
 export function calendarEventToIcsEvent(event: {
   id: string;
   title: string;
