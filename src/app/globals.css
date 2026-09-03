@@ -128,3 +128,120 @@
     @apply font-sans;
   }
 }
+
+/*
+ * Gruschedule content-area redesign, scoped to `.gs-shell`.
+ * These overrides only apply inside the main/footer content column, not
+ * :root/.dark globally — the sidebar (AppNav's <aside>/LineSidebar) reads
+ * --primary/--foreground/--muted-foreground directly, so keeping those
+ * untouched at the root guarantees the sidebar's look never changes.
+ */
+.dark .gs-shell {
+  --background: #0a0a0b;
+  --foreground: #ededef;
+  --card: rgba(255, 255, 255, 0.035);
+  --card-foreground: #ededef;
+  --popover: #17171b;
+  --popover-foreground: #ededef;
+  --primary: #7c3aed;
+  --primary-foreground: #ffffff;
+  --secondary: rgba(255, 255, 255, 0.05);
+  --secondary-foreground: #ededef;
+  --muted: rgba(255, 255, 255, 0.045);
+  --muted-foreground: #8a8a94;
+  --accent: rgba(255, 255, 255, 0.06);
+  --accent-foreground: #ededef;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.09);
+  --ring: #7c3aed;
+  --radius: 1rem;
+}
+
+.gs-shell {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.gs-shell ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.gs-shell ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.09);
+  border-radius: 99px;
+}
+
+@keyframes gs-shimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}
+@keyframes gs-pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+.gs-card {
+  border-radius: var(--radius-2xl);
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  backdrop-filter: blur(14px);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    border-color 0.22s ease;
+}
+.dark .gs-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.gs-gradient-bg {
+  background: linear-gradient(135deg, #7c3aed, #3b82f6);
+}
+.gs-gradient-text {
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.gs-gradient-border {
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 58, 237, 0.9),
+    rgba(59, 130, 246, 0.55) 55%,
+    rgba(255, 255, 255, 0.06)
+  );
+}
+
+.gs-dot-pulse {
+  animation: gs-pulse-dot 2s ease-in-out infinite;
+}
+
+.gs-badge-vize {
+  background: rgba(59, 130, 246, 0.14);
+  color: #93c5fd;
+  border: 1px solid rgba(59, 130, 246, 0.22);
+}
+.gs-badge-final {
+  background: rgba(167, 139, 250, 0.15);
+  color: #c4b5fd;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+}
+.gs-badge-butunleme {
+  background: rgba(245, 158, 11, 0.14);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.26);
+}

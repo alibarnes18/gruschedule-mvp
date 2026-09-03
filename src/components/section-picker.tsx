@@ -103,12 +103,19 @@ export function SectionPicker({
     emit({ facultyId, departmentId, sectionId: nextSectionId || null });
   }
 
+  const pillTrigger =
+    "w-full rounded-full border-border bg-foreground/[0.035] px-3.5 py-2.5 font-medium text-foreground hover:bg-foreground/[0.07] data-placeholder:text-muted-foreground dark:bg-foreground/[0.035] dark:hover:bg-foreground/[0.07]";
+
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <div className="flex flex-col gap-1.5">
-        <span className="text-xs text-muted-foreground">Fakülte</span>
-        <Select value={facultyId || null} onValueChange={(v) => handleFacultyChange(v ?? "")}>
-          <SelectTrigger className="w-full">
+        <span className="text-xs uppercase tracking-wide text-muted-foreground">Fakülte</span>
+        <Select
+          items={faculties.map((f) => ({ value: f.id, label: f.name }))}
+          value={facultyId || null}
+          onValueChange={(v) => handleFacultyChange(v ?? "")}
+        >
+          <SelectTrigger className={pillTrigger}>
             <SelectValue placeholder="Seçiniz" />
           </SelectTrigger>
           <SelectContent>
@@ -122,13 +129,14 @@ export function SectionPicker({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-xs text-muted-foreground">Bölüm</span>
+        <span className="text-xs uppercase tracking-wide text-muted-foreground">Bölüm</span>
         <Select
+          items={departmentsInFaculty.map((d) => ({ value: d.id, label: d.name }))}
           value={departmentId || null}
           onValueChange={(v) => handleDepartmentChange(v ?? "")}
           disabled={!facultyId}
         >
-          <SelectTrigger className="w-full">
+          <SelectTrigger className={pillTrigger}>
             <SelectValue placeholder="Seçiniz" />
           </SelectTrigger>
           <SelectContent>
@@ -143,13 +151,17 @@ export function SectionPicker({
 
       {sections && (
         <div className="flex flex-col gap-1.5">
-          <span className="text-xs text-muted-foreground">Sınıf / Şube</span>
+          <span className="text-xs uppercase tracking-wide text-muted-foreground">Sınıf / Şube</span>
           <Select
+            items={sectionsInDepartment.map((s) => ({
+              value: s.id,
+              label: sectionLabel(s.grade_level, s.section_label),
+            }))}
             value={sectionId || null}
             onValueChange={(v) => handleSectionChange(v ?? "")}
             disabled={!departmentId}
           >
-            <SelectTrigger className="w-full">
+            <SelectTrigger className={pillTrigger}>
               <SelectValue placeholder="Seçiniz" />
             </SelectTrigger>
             <SelectContent>

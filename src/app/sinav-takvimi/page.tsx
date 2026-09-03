@@ -18,8 +18,13 @@ export default async function ExamSchedulePage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-semibold text-foreground">Sınav Takvimi</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <p className="mb-2 text-xs uppercase tracking-[0.09em] text-muted-foreground">
+          Vize · Final · Bütünleme
+        </p>
+        <h1 className="text-[28px] font-bold leading-[1.05] tracking-tight text-foreground sm:text-[36px]">
+          Sınav Takvimi
+        </h1>
+        <p className="mt-2.5 max-w-[56ch] text-sm leading-relaxed text-muted-foreground">
           Yaklaşan vize, final ve bütünleme sınavları.
         </p>
       </div>

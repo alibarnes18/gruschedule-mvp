@@ -30,12 +30,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <AppNav>
-            <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
-              {children}
-            </main>
-            <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
-              Gruschedule — Giresun Üniversitesi için gayriresmî bir öğrenci aracı.
-            </footer>
+            <div className="gs-shell flex flex-1 flex-col">
+              <main className="mx-auto w-full max-w-5xl flex-1 px-4 py-8 sm:px-6">
+                {children}
+              </main>
+              <footer className="border-t border-border py-6 text-center text-xs text-muted-foreground">
+                Gruschedule — Giresun Üniversitesi için gayriresmî bir öğrenci aracı.
+              </footer>
+            </div>
           </AppNav>
         </ThemeProvider>
       </body>
